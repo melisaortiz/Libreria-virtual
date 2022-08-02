@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+                <!-- Bootstrap CSS -->
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+                    <title>Librería</title>
+                    <link rel="stylesheet" href="/css/listar_autores.css">
+                        </head>
+
+
+                        <body>
+
+                            <nav th:replace="index.html :: navbar"></nav>
+                            <a class="btn btn-primary" href="/autor/autor" role="button"> ❰❰ Ir a Autor </a>
+
+                            <div class="encabezado">
+                                <h1 class="fuente"> Lista de autores </h1>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nombre del autor</th>
+                                            <th scope="col">Modificar</th>
+                                            <th scope="col"> Estado
+                                            <th scope="col" >Habiliar/Deshabilitar</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="listaAutores:${listarAutores}">
+                                            <td th:text="${listaAutores.nombre}" ></td>
+                                            <td> <a class="btn btn-dark" th:href="@{/autor/modificar_autor/}" role="button">Modificar</a></td>
+                                            <td th:if="${listaAutores.alta == true}" >ALTA</td>
+                                            <td th:if="${listaAutores.alta == false}" >BAJA</td>
+                                            <td> <a class="btn btn-danger" th:href="@{/autor/listar_autores/}" th:text="${altaBaja}" role="button">Dar de baja</a></td>
+                                           
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+
+
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+
+
+                        </body>

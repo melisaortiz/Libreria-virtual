@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Librería</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<main>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Librería virtual</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="autor.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Autor
+                </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/autor/autor">Ir a Autor</a></li>
+                            <li><a class="dropdown-item" href="/autor/crear_autor">Añadir un autor</a></li>
+                            <li><a class="dropdown-item" href="/autor/listar_autores">Ver listado de autores</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="editorial.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Editorial
+                </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/editorial/editorial">Ir a Editorial</a></li>
+                            <li><a class="dropdown-item" href="/editorial/crear_editorial">Añadir una editorial nueva</a></li>
+                            <li><a class="dropdown-item" href="/editorial/listar_editoriales">Ver listado de editoriales</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="libro.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Libro
+                </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/libro/libro">Ir a Libro</a></li>
+                            <li><a class="dropdown-item" href="/libro/crear_libro">Añadir un libro nuevo</a></li>
+                            <li><a class="dropdown-item" href="/libro/listar_libros">Ver listado de libros</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="encabezado">
+        <h1 class="fuente"> ¡Bienvenidos a la librería vitual!</h1>
+    </div>
+
+</main>
+
+<body>
+
+    <div class="cuerpo">
+        <h2 id="subtitlulo">▿ Administrá tu librería virtual ▿</h2>
+
+        <ul class="elementos">
+            <li class="elementos-autor">
+                <h2> <img src="/img/logo (1).png" alt="" id="logo"> Autor</h2>
+                <p>Añadir un nuevo autor, modificar, eliminar o ver la lista de autores.</p>
+                <a href="/autor/autor" class="btn btn-dark">Ir a Autor</a>
+            </li>
+            <li class="elementos-editorial">
+                <h2> <img src="/img/logo (2).png" alt="" id="logo">Editorial</h2>
+                <p>Añadir una nueva editorial, modificar, eliminar o ver la lista de editoriales.</p>
+                <a href="/editorial/editorial" class="btn btn-dark">Ir a Editorial</a>
+            </li>
+            <li class="elementos-libro">
+                <h2> <img src="/img/logo (3).png" alt="" id="logo">Libro</h2>
+                <p>Añadir un nuevo libro, modificar, eliminar o ver la lista de libros.</p>
+                <a href="/libro/libro" class="btn btn-dark">Ir a Libros</a>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+
+
+
+</html>

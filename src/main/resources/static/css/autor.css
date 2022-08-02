@@ -1,0 +1,61 @@
+@font-face {
+    src: url(../font/BebasNeue-Regular.ttf);
+    font-family: Bebas Neue;
+}
+
+body {
+    background-color: #131313;
+}
+
+.titulo {
+    color: #96fcb8;
+    font-family: Bebas Neue;
+    font-size: 200px;
+    font-weight: 100%;
+    text-align: center;
+    text-shadow: black 20%;
+    margin: 0px;
+    margin-top: 15px;
+    padding: 0px;
+}
+
+.encabezado h4 {
+    color: #f9faf4;
+    font-size: 40px;
+    font-weight: 100%;
+    text-align: center;
+    text-shadow: black 20%;
+    margin-top: 0px;
+    padding: 10px;
+}
+
+.elementos li {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    vertical-align: top;
+    margin: 0 0 1.3% 1.3%;
+    padding: 30px 10px;
+}
+
+#botones {
+    border-radius: 30px;
+    border-style: solid;
+    border-color: black;
+    width: 300px;
+    padding: 6%;
+    font-size: 25px;
+    font-family: Bebas Neue;
+    background-image: linear-gradient(175deg, #ffff69 0, #ffff69 6.25%, #ffff6c 12.5%, #ffff71 18.75%, #f0ff79 25%, #d1ff81 31.25%, #b0ff8a 37.5%, #8dff92 43.75%, #66ff98 50%, #37f09d 56.25%, #00e3a3 62.5%, #00d8a9 68.75%, #00cfb0 75%, #00c8b8 81.25%, #00c3c0 87.5%, #00bfca 93.75%, #00bdd6 100%);
+}
+
+#botones:hover {
+    font-size: 26px;
+}
+
+.encabezado h5 {
+    color: red;
+    margin-left: 71%;
+    margin-top: -50px;
+    font-size: 17px;
+}
