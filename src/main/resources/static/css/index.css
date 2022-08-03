@@ -7,6 +7,7 @@
 body {
     background-color: white;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 
@@ -83,12 +84,11 @@ body main .encabezado {
 }
 
 .encabezado div.titulo h1 {
-    font-size: 70px;
+    font-size: 53px;
     width: 100%;
-    color: #1d6ce2;
+    color: #4e59d3;
     text-align: inherit;
-    text-shadow: 2px 4px 3px rgb(179 179 179);
-    padding-top: 5rem;
+    padding-top: 10rem;
     font-family: 'Raleway', sans-serif;
     text-transform: uppercase;
 }
@@ -105,13 +105,14 @@ body main .encabezado {
     width: 70%;
     padding: 0 2rem;
     background-color: #2f1b47;
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .encabezado div button a {
     text-decoration: none;
     color: white;
-    font-size: 1rem;
+    font-size: 1.3rem;
+    text-transform: uppercase;
 }
 
 .encabezado div button:hover {

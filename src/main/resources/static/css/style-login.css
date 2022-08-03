@@ -73,16 +73,16 @@ nav ul li button a#login {
 
 .login div.login-formulario {
     width: 90%;
-    margin: 5rem;
+    margin: 5rem 0rem 0 5rem;
     display: inline-block;
 }
 
 .login form.login-form {
     color: white;
-    border-radius: 2%;
     padding: 2rem;
-    width: 100%;
+    width: 55%;
     text-align: center;
+    margin: auto;
 }
 
 .login form.login-form h3 {
@@ -96,7 +96,7 @@ nav ul li button a#login {
     padding: 1rem;
     margin: 1rem;
     border-radius: 2rem;
-    width: 45%;
+    width: 90%;
 }
 
 
@@ -161,26 +161,48 @@ form.login-form h3 {
 }
 
 
+/* REGISTRO */
+
+section.registro {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    color: #ffffff;
+}
+
+.registro .modal.fade {
+    color: black;
+}
+
+.registro .modal.fade .modal-body .form-control {
+    border-radius: 2rem;
+}
+
+.registro .modal.fade .modal-body .form-text.text-muted {
+    font-size: 11px;
+    ;
+}
+
+
 /* ----- Botón "registrarse" ----- */
 
-form.login-form button#login-form_registrarse {
+.registro button#login-form_registrarse {
     border-radius: 50px;
     position: relative;
 }
 
-form.login-form button#login-form_registrarse span a {
+.registro button#login-form_registrarse span {
     color: #ffffff;
     mix-blend-mode: difference;
-    text-decoration: none;
 }
 
-form.login-form button#login-form_registrarse::before {
+.registro button#login-form_registrarse::before {
     border-radius: 3rem;
     width: 23%;
-    border: solid #FFFFFF;
+    border: solid #44BBA4;
 }
 
-form.login-form button#login-form_registrarse:hover::before {
-    background: #FFFFFF;
+.registro button#login-form_registrarse:hover::before {
+    background: #44BBA4;
     width: 100%;
 }
