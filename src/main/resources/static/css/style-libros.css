@@ -1,0 +1,254 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: white;
+        font-family: 'Montserrat', sans-serif;
+    }
+    /* NAVBAR */
+    
+    nav.navbar_gral {
+        background-image: linear-gradient(to right, #0c8af1, #3373e4, #4e59d3, #633cbe, #7307a3);
+        width: 100%;
+        height: 3rem;
+        position: relative;
+        opacity: 0.89;
+        height: 6rem;
+        z-index: 100;
+        padding-top: 1.5rem;
+    }
+    
+    nav.navbar_gral ul {
+        justify-content: flex-end;
+        display: flex;
+        list-style: none;
+        margin-right: 5rem;
+        font-weight: 450;
+        font-size: 1.2rem;
+    }
+    
+    nav.navbar_gral ul li:first-child {
+        flex: 1;
+        margin-top: 0rem;
+        display: inherit;
+        font-family: 'Raleway', sans-serif;
+    }
+    
+    nav.navbar_gral ul li {
+        margin-top: 0rem;
+        display: inherit;
+    }
+    
+    nav.navbar_gral ul li a {
+        padding: 1rem;
+        text-decoration: none;
+        color: white;
+        font-family: sans-serif;
+    }
+    
+    nav.navbar_gral ul li a:hover {
+        color: #44BBA4;
+    }
+    
+    nav ul li button {
+        height: 3rem;
+        border: none;
+        border-radius: 2rem;
+        width: 100%;
+        padding: 0 2rem;
+    }
+    
+    nav ul li button a#login {
+        color: black;
+        font-size: 1rem;
+    }
+    /* SIDEBAR */
+    
+    #sidebar {
+        position: absolute;
+        width: 250px;
+        height: 100%;
+        background-color: #e2e2e2;
+        left: -250px;
+        transition: all 500ms linear;
+        scrollbar-width: 20px;
+        scroll-margin-block-end: 200px;
+        overflow: hidden;
+        overflow-y: scroll;
+        z-index: 100;
+    }
+    
+    #sidebar.active {
+        left: 0px;
+    }
+    
+    #sidebar ul li {
+        color: rgb(5, 5, 5);
+        text-align: start;
+        padding: 15px 10px;
+        list-style: none;
+        padding-bottom: 30px;
+    }
+    
+    #sidebar ul li p {
+        border-bottom: 1px solid rgba(100, 100, 100, .3);
+    }
+    
+    #sidebar ul li .logo {
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    #sidebar ul {
+        padding-left: 5px;
+    }
+    
+    #sidebar ul form.d-flex {
+        margin-top: 1rem;
+        margin-right: 5px;
+    }
+    
+    #sidebar .toggle-btn {
+        position: fixed;
+        left: 10px;
+        top: 100px;
+        cursor: pointer;
+        transition: all 500ms linear;
+    }
+    
+    #sidebar .toggle-btn.active {
+        left: 255px;
+    }
+    
+    #sidebar .toggle-btn span {
+        display: block;
+        width: 40px;
+        text-align: center;
+        font-size: 30px;
+    }
+    
+    #sidebar ul li ul li a {
+        text-decoration: none;
+        color: black;
+    }
+    /* SIDEBAR BUSCADOR */
+    
+    .me-2 {
+        border-radius: 2rem;
+    }
+    
+    .btn.btn-outline-success {
+        background-color: #4e59d3;
+        color: white;
+        border: none;
+        width: 30%;
+        padding: 6px 6px;
+    }
+    /* SIDEBAR ACCORDION-AYUDA */
+    
+    .accordion-item .accordion-button {
+        background-color: #e2e2e2;
+        color: black;
+    }
+    
+    .accordion-body {
+        background-color: #e2e2e2;
+    }
+    /* NOVEDADES */
+    
+    section.novedades {
+        width: 100%;
+        margin: auto;
+        padding: 0 3%;
+    }
+    
+    .novedades h5 {
+        font-size: 1.5rem;
+        text-align: center;
+        padding-top: 1rem;
+    }
+    /* NOVEDADES-- Swiper */
+    
+    .swiper-general {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+    }
+    
+    .swiper-general .conteiner {
+        width: 90%;
+        padding: 10px 40px;
+    }
+    
+    .conteiner .swiper {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .conteiner .swiper-slide {
+        position: relative;
+        text-align: start;
+        font-size: 18px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.25);
+    }
+    
+    .conteiner .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    
+    .conteiner .card-description {
+        padding: 1rem;
+    }
+    
+    .conteiner .card-description .card-title,
+    .conteiner .card-description .card-text {
+        margin-bottom: 0.5rem;
+    }
+    
+    .conteiner .card-description .card-link {
+        text-align: center;
+    }
+    
+    .conteiner .card-description .card-link a {
+        text-decoration: none;
+        color: #1d6ce2;
+    }
+    /* LIBROS DESTACADOS */
+    
+    section.libros-destacados {
+        width: 80%;
+        margin: auto;
+    }
+    
+    section.libros-destacados .cards {
+        display: grid;
+        grid-column: 3;
+        width: 100%;
+    }
+    
+    .card--conteiner {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 150px;
+        /*Definimos el alto de las filas*/
+        padding: 20px;
+        grid-gap: 10px;
+    }
+    
+    .card__img {
+        width: 60%;
+        height: 100%;
+        object-fit: cover;
+        /*La imagen ocupa el ancho y alto anteriormente especificado pero con cover no se distorciona*/
+    }
