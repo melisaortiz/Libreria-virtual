@@ -12,29 +12,32 @@
     <link rel="stylesheet" href="/css/index.css">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <!-- Fonts Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Raleway:wght@600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
     <header>
-
-        <nav class="navbar_gral">
+        <nav class="navbar_gral" th:fragment="navbar">
             <ul>
                 <li id="navbar_nombre">
                     <a href="">Libroteca virtual</a>
                 </li>
-                <li><button><a href="" id="login">Iniciar sesión</a></button></li>
-                <li><a href="">Quiénes somos</a></li>
-                <li><a href="">Contacto</a></li>
+                <li><button><a href="/login" id="login">Iniciar sesión</a></button></li>
+                <li><a href="#quienes-somos">Quiénes somos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-
     </header>
 
     <main>
         <div class="encabezado">
             <div class="titulo">
                 <h1 class="fuente"> Libroteca vitual</h1>
-                <p>Librería y biblioteca en un mismo lugar</p>
+                <p>Librería y biblioteca en un mismo lugar.</p>
                 <button><a href="">Ver libros</a></button>
             </div>
             <div class="encabezado-img">
@@ -118,41 +121,98 @@
 
     </section>
 
-    <section class="quienes-somos">
+    <section class="quienes-somos" id="quienes-somos">
         <h5>Sobre nosotros</h5>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius dolores optio autem aut? Cupiditate vitae explicabo quis aliquam expedita doloribus, voluptates consectetur, deleniti laudantium quia officia natus, officiis odio voluptate?</p>
+        <div class="nosotros">
+            <div class="personal">
+                <img src="/img/elon-mask.jpg" alt="">
+                <p>Elon Mask</p>
+                <p>CEO</p>
+            </div>
+
+            <div class="personal">
+                <img src="/img/mark-zuckerberg.jpg" alt="">
+                <p>Mark Zuckerberg</p>
+                <p>Director of proyects</p>
+            </div>
+
+            <div class="personal">
+                <img src="/img/grace-hopper.jpg" alt="">
+                <p>Grace Hopper</p>
+                <p>CTO</p>
+            </div>
+
+        </div>
+
     </section>
 
     <section class="slogan">
         <div>
-            <h4>"Un libro es la prueba de que los seres humanos somos capaces de hacer magia" - Carl Sagan </h4>
+
         </div>
     </section>
 
-    <section class="contacto">
+    <section class="contacto" id="contacto">
         <div>
             <h5>Contactanos!</h5>
             <p>contacto@libreriavirtual.com</p>
         </div>
-        <div>
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
+        <div class="imgs">
+            <a href="https://www.facebook.com/"> <img src="/img/redes (1).png" alt=""></a>
+            <a href="https://www.linkedin.com/"> <img src="/img/redes (2).png" alt=""></a>
+            <a href="https://www.instagram.com/"><img src="/img/redes (3).png" alt=""></a>
+            <a href="https://twitter.com/"><img src="/img/redes (4).png" alt=""></a>
         </div>
 
 
     </section>
 
-    <footer>
-        <div class="contenido">
-            <div></div>
-            <div></div>
-            <div></div>
+
+    <footer class="footer">
+        <div class="footer_flex">
+            <div class="footer_informacion">
+                <p><a href=""> Contáctanos </a></p>
+                <p><a href=""> Preguntas frecuentes </a></p>
+                <p><a href=""> Iniciar sesión </a></p>
+                <p><a href=""> Quiénes somos </a></p>
+                <p><a href=""> Soy proveedor </a></p>
+            </div>
+            <div class="footer_mapa">
+
+                <div class="footer_mapa_ubicacion">
+                    <p> Encontranos en Av. Santa Fe 1860, C1123 CABA</p>
+                </div>
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d325.8459455100003!2d-58.39429739919645!3d-34.59603477126445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccabdfc191295%3A0x8110084c679e64c0!2sEl%20Ateneo%20Grand%20Splendid!5e0!3m2!1ses!2sar!4v1657927156814!5m2!1ses!2sar"
+                    width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="footer_redes">
+                <p>Seguinos en redes</p>
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/"> <img class="img_footer" src="/img/redes (1).png" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/"> <img class="img_footer" src="/img/redes (3).png" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/"> <img class="img_footer" src="/img/redes (4).png" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/"> <img class="img_footer" src="/img/redes (2).png" alt=""></a>
+                    </li>
+                </ul>
+            </div>
+
+
         </div>
 
-        <div>Copyrigth</div>
+        <p class="footer_copyright">© Copyright Libroteca virtual</p>
+        <p class="footer_copyright">Diseñado y producido por <span><a href="https://github.com/melisaortiz">Melisa Ortiz</a></span>.</p>
+
     </footer>
+
 
 
 

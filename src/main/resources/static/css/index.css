@@ -6,7 +6,7 @@
 
 body {
     background-color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -36,6 +36,7 @@ nav.navbar_gral ul li:first-child {
     flex: 1;
     margin-top: 0rem;
     display: inherit;
+    font-family: 'Raleway', sans-serif;
 }
 
 nav.navbar_gral ul li {
@@ -72,6 +73,7 @@ nav ul li button a#login {
 
 body main .encabezado {
     padding: 5%;
+    padding-top: 5rem;
     padding-bottom: 0;
     display: flex;
 }
@@ -81,13 +83,20 @@ body main .encabezado {
 }
 
 .encabezado div.titulo h1 {
-    font-size: 3.5rem;
+    font-size: 70px;
+    width: 100%;
+    color: #1d6ce2;
     text-align: inherit;
     text-shadow: 2px 4px 3px rgb(179 179 179);
-    padding-top: 3rem;
+    padding-top: 5rem;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
 }
 
-.encabezado div p {}
+.encabezado div p {
+    padding: 1rem;
+    font-size: 1.5rem;
+}
 
 .encabezado div button {
     height: 3rem;
@@ -96,7 +105,7 @@ body main .encabezado {
     width: 70%;
     padding: 0 2rem;
     background-color: #2f1b47;
-    margin-top: 5rem;
+    margin-top: 10rem;
 }
 
 .encabezado div button a {
@@ -109,10 +118,12 @@ body main .encabezado {
     background-color: #3d336e;
 }
 
+.encabezado .encabezado-img {
+    width: 80%;
+}
+
 .encabezado div img {
-    width: 65%;
-    margin-left: 20%;
-    margin-top: 0%;
+    width: 100%;
 }
 
 
@@ -198,6 +209,25 @@ section.quienes-somos {
     padding-bottom: 1rem;
 }
 
+.quienes-somos .nosotros {
+    display: flex;
+    margin: 0 15%;
+    padding: 2rem;
+}
+
+.quienes-somos .nosotros .personal {
+    padding: 0 2rem;
+    text-align: center;
+    width: 30%;
+}
+
+.quienes-somos .nosotros .personal img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 3rem;
+}
+
 
 /* SLOGAN */
 
@@ -216,6 +246,9 @@ section.slogan div h4 {
     color: blueviolet;
 }
 
+
+/* CONTACTO */
+
 section.contacto {
     padding: 10% 2%;
     display: flex;
@@ -225,8 +258,93 @@ section.contacto {
     font-size: 2rem;
 }
 
+.contacto div.imgs {
+    width: 60%;
+    margin-left: 20%;
+}
+
+.contacto div.imgs img {
+    width: 10%;
+    padding: 1rem;
+}
+
+
+/* FOOTER */
+
 footer {
+    margin-top: 4rem;
+    padding: 2rem;
+    height: 100%;
     background-color: #2f1b47;
-    padding: 10% 2%;
+    border-top-width: 4px;
+}
+
+footer .footer_flex {
     display: flex;
+    margin-bottom: 4rem;
+}
+
+footer .footer_flex div {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    color: white;
+    text-align: center;
+}
+
+footer .footer_flex div a:hover {
+    color: #44BBA4;
+}
+
+footer .footer_flex div a {
+    text-decoration: none;
+    color: white;
+}
+
+footer div.footer_informacion {
+    text-align: start;
+}
+
+div.footer_informacion p {
+    padding-bottom: 1rem;
+}
+
+footer div.footer_redes {
+    width: 28.5%;
+    text-align: center;
+}
+
+div.footer_redes p {
+    padding-bottom: 1rem;
+}
+
+footer div.footer_redes ul li {
+    display: flex;
+    padding-right: 1rem;
+}
+
+footer div.footer_redes ul li {
+    padding-left: 40%;
+}
+
+footer div.footer_redes ul li img {
+    margin: 5px;
+}
+
+footer div.footer_redes img.img_footer {
+    width: 40px;
+    height: 40px;
+}
+
+footer .footer_mapa_ubicacion {
+    display: flex;
+    margin: -1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+}
+
+footer .footer_copyright {
+    text-align: center;
+    color: #747474;
+    margin: 0rem;
+    font-size: 12px;
 }

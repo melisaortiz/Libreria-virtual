@@ -5,14 +5,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Librería vitual</title>
+    <title>LogIn- Libroteca vitual</title>
+    <link rel="stylesheet" href="/css/style-login.css">
+
 </head>
 
 <body>
     <header>
-        <nav th:replace="index.html :: navbar"></nav>
+        <nav class="navbar_gral" th:fragment="navbar">
+            <ul>
+                <li id="navbar_nombre">
+                    <a href="/index">Libroteca virtual</a>
+                </li>
+                <li><button><a href="/login" id="login">Iniciar sesión</a></button></li>
+                <li><a href="">Quiénes somos</a></li>
+                <li><a href="">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
+    <section class="login">
+
+        <div class="login-formulario">
+            <form class="login-form">
+
+                <h3>Iniciar sesión</h3>
+                <div class="mb-3">
+
+                    <input type="email" class="form-control" id="login-form_input" aria-describedby="emailHelp" placeholder="email@dominio.com" required>
+
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="login-form_input" placeholder="Contraseña1234" required>
+                </div>
+
+                <button type="submit" class="btn-form" id="login-form_iniciar-sesion"><span class="btn-text">Iniciar sesión</span></button>
+
+                <h3>¿No tienes cuenta?</h3>
+                <button type="submit" class="btn-form" id="login-form_registrarse"><span class="btn-text"><a href="">Registrate</a></span></button>
+            </form>
+        </div>
+    </section>
 
 
 </body>
