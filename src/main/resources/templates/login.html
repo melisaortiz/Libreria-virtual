@@ -30,20 +30,19 @@
     <section class="login">
 
         <div class="login-formulario">
-            <form class="login-form">
-
+            <form  action="/logincheck" method="POST" class="login-form" id="inicio">
+          
                 <h3>Iniciar sesión</h3>
                 <div class="mb-3">
 
-                    <input type="email" class="form-control" id="login-form_input" aria-describedby="emailHelp" placeholder="email@dominio.com" required>
+                    <input type="email" name="username" class="form-control" id="login-form_input" aria-describedby="emailHelp" placeholder="email@dominio.com" required>
 
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" id="login-form_input" placeholder="Contraseña1234" required>
+                    <input type="password" name="password" class="form-control" id="login-form_input" placeholder="Contraseña1234" required>
                 </div>
 
                 <button type="submit" class="btn-form" id="login-form_iniciar-sesion"><span class="btn-text">Iniciar sesión</span></button>
-
 
             </form>
 
@@ -66,7 +65,8 @@
                   </button>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="/usuario/registrar_usuario" method="POST" enctype="multipart/form-data">
+
                                     <label>Nombre y apellido *</label>
                                     <input type="text" class="form-control" name="nombre" required th:value="${nombre}" />
                                     <br>
@@ -89,12 +89,13 @@
                                     <label>Foto de perfil</label>
                                     <input type="file" class="form-control bg-dark text-white" name="archivo" th:value="${archivo}" id="file" />
                                     <small id="fotoHelp" class="form-text text-muted">Ingrese una foto (preferentemente en formato cuadrado) donde se pueda ver su rostro.</small>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Crear cuenta</button>
+                            </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Crear cuenta</button>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

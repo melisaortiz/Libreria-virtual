@@ -1,12 +1,17 @@
 package com.libreria.libreria.entidades;
 
-import javax.persistence.Column;
+import com.libreria.libreria.enums.Pais;
 import javax.persistence.Entity;
-
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * La entidad autor modela los autores de los libros.
+ */
 @Entity
 public class Autor {
 
@@ -14,23 +19,30 @@ public class Autor {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-
-    @Column(nullable = false)
     private String nombre;
+    private String descripcion;
     private Boolean alta;
 
+    @OneToOne
+    private Foto foto;
+    @Enumerated(EnumType.STRING)
+    private Pais pais;
     
     //CONSTRUCTORES
 
     public Autor() {
     }
 
-    public Autor(String nombre, Boolean alta) {
+    public Autor(String id, String nombre, String descripcion, Boolean alta, Foto foto, Pais pais) {
+        this.id = id;
         this.nombre = nombre;
+        this.descripcion = descripcion;
         this.alta = alta;
+        this.foto = foto;
+        this.pais = pais;
     }
 
-    
+      
     //GETTERS Y SETTERS
     
     /**
@@ -54,25 +66,43 @@ public class Autor {
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
+   
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+      public String getDescripcion() {
+        return descripcion;
+    }
 
-    /**
-     * @return the alta
-     */
-    public Boolean getAlta() {
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+  
+    public Boolean isAlta() {
         return alta;
     }
 
-    /**
-     * @param alta the alta to set
-     */
+    
     public void setAlta(Boolean alta) {
         this.alta = alta;
+    }
+    
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
+    }
+    
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     //TO STRING 

@@ -1,12 +1,24 @@
 package com.libreria.libreria.entidades;
 
-import javax.persistence.Column;
+import com.libreria.libreria.enums.Categoria;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * La entidad libro modela los libros que están disponibles en la biblioteca
+ * para ser prestados/vendidos. En esta entidad, el atributo “ejemplares”
+ * contiene la cantidad total de ejemplares de ese libro, mientras que el
+ * atributo “ejemplaresPrestados” contiene cuántos de esos ejemplares se
+ * encuentran prestados en este momento y el atributo “ejemplaresRestantes”
+ * contiene cuántos de esos ejemplares quedan para prestar.
+ *
+ *
+ */
 @Entity
 public class Libro {
 
@@ -14,190 +26,176 @@ public class Libro {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-
-    @Column(nullable = false) //Esta anotación es para indicar que esa columna no puede estar vacia
-    private Long isbn;
-    @Column(nullable = false)
     private String titulo;
+    private Long isbn;
+    private String descripcion;
     private Integer anio;
+    private Integer precio;
+    private boolean compra;
+    private boolean alta;
     private Integer ejemplares;
     private Integer ejemplaresPrestados;
     private Integer ejemplaresRestantes;
-    private Boolean alta;
 
     @OneToOne
     private Autor autor;
     @OneToOne
     private Editorial editorial;
+    @OneToOne
+    private Foto foto;
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
 
     // CONSTRUCTORES
-    
     public Libro() {
     }
 
-    public Libro( Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Boolean alta, Autor autor, Editorial editorial) {
-       
-        this.isbn = isbn;
+    public Libro(String id, String titulo, Long isbn, String descripcion, Integer anio, Integer precio, boolean compra, boolean alta, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes, Autor autor, Editorial editorial, Foto foto, Categoria categoria) {
+        this.id = id;
         this.titulo = titulo;
+        this.isbn = isbn;
+        this.descripcion = descripcion;
         this.anio = anio;
+        this.precio = precio;
+        this.compra = compra;
+        this.alta = alta;
         this.ejemplares = ejemplares;
         this.ejemplaresPrestados = ejemplaresPrestados;
         this.ejemplaresRestantes = ejemplaresRestantes;
-        this.alta = alta;
         this.autor = autor;
         this.editorial = editorial;
+        this.foto = foto;
+        this.categoria = categoria;
     }
 
+ 
     //GETTERS Y SETTERS
-    
-    /**
-     * @return the id
-     */
+
     public String getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(String id) {
         this.id = id;
     }
 
-    /**
-     * @return the isbn
-     */
-    public Long getIsbn() {
-        return isbn;
-    }
-
-    /**
-     * @param isbn the isbn to set
-     */
-    public void setIsbn(Long isbn) {
-        this.setIsbn(isbn);
-    }
-
-    /**
-     * @return the titulo
-     */
     public String getTitulo() {
         return titulo;
     }
 
-    /**
-     * @param titulo the titulo to set
-     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    /**
-     * @return the anio
-     */
+    public Long getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public Integer getAnio() {
         return anio;
     }
 
-    /**
-     * @param anio the anio to set
-     */
     public void setAnio(Integer anio) {
         this.anio = anio;
     }
 
-    /**
-     * @return the ejemplares
-     */
-    public Integer getEjemplares() {
-        return ejemplares;
+    public Integer getPrecio() {
+        return precio;
     }
 
-    /**
-     * @param ejemplares the ejemplares to set
-     */
-    public void setEjemplares(Integer ejemplares) {
-        this.ejemplares = ejemplares;
+    public void setPrecio(Integer precio) {
+        this.precio = precio;
     }
 
-    /**
-     * @return the ejemplaresPrestados
-     */
-    public Integer getEjemplaresPrestados() {
-        return ejemplaresPrestados;
+    public boolean isCompra() {
+        return compra;
     }
 
-    /**
-     * @param ejemplaresPrestados the ejemplaresPrestados to set
-     */
-    public void setEjemplaresPrestados(Integer ejemplaresPrestados) {
-        this.ejemplaresPrestados = ejemplaresPrestados;
+    public void setCompra(boolean compra) {
+        this.compra = compra;
     }
 
-    /**
-     * @return the ejemplaresRestantes
-     */
-    public Integer getEjemplaresRestantes() {
-        return ejemplaresRestantes;
-    }
-
-    /**
-     * @param ejemplaresRestantes the ejemplaresRestantes to set
-     */
-    public void setEjemplaresRestantes(Integer ejemplaresRestantes) {
-        this.ejemplaresRestantes = ejemplaresRestantes;
-    }
-
-    /**
-     * @return the alta
-     */
-    public Boolean getAlta() {
+    public boolean isAlta() {
         return alta;
     }
 
-    /**
-     * @param alta the alta to set
-     */
     public void setAlta(Boolean alta) {
         this.alta = alta;
     }
 
-    /**
-     * @return the autor
-     */
+    public Integer getEjemplares() {
+        return ejemplares;
+    }
+
+    public void setEjemplares(Integer ejemplares) {
+        this.ejemplares = ejemplares;
+    }
+
+    public Integer getEjemplaresPrestados() {
+        return ejemplaresPrestados;
+    }
+
+    public void setEjemplaresPrestados(Integer ejemplaresPrestados) {
+        this.ejemplaresPrestados = ejemplaresPrestados;
+    }
+
+    public Integer getEjemplaresRestantes() {
+        return ejemplaresRestantes;
+    }
+
+    public void setEjemplaresRestantes(Integer ejemplaresRestantes) {
+        this.ejemplaresRestantes = ejemplaresRestantes;
+    }
+
     public Autor getAutor() {
         return autor;
     }
 
-    /**
-     * @param autor the autor to set
-     */
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
-    /**
-     * @return the editorial
-     */
     public Editorial getEditorial() {
         return editorial;
     }
 
-    /**
-     * @param editorial the editorial to set
-     */
     public void setEditorial(Editorial editorial) {
         this.editorial = editorial;
     }
 
-    
-    //TO STRING
-    
-    @Override
-    public String toString() {
-        return "Libro{" + "id=" + getId() + ", isbn=" + getIsbn() + ", titulo=" + getTitulo() + ", anio=" + getAnio() + ", ejemplares=" + getEjemplares() + ", ejemplaresPrestados=" + getEjemplaresPrestados() + ", ejemplaresRestantes=" + getEjemplaresRestantes() + ", alta=" + getAlta() + ", autor=" + getAutor() + ", editorial=" + getEditorial() + '}';
+    public Foto getFoto() {
+        return foto;
     }
 
+    public void setFoto(Foto foto) {
+        this.foto = foto;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
     
+
+    //TO STRING
+    @Override
+    public String toString() {
+        return "Libro{" + "id=" + getId() + ", isbn=" + getIsbn() + ", titulo=" + getTitulo() + ", anio=" + getAnio() + ", ejemplares=" + getEjemplares() + ", ejemplaresPrestados=" + getEjemplaresPrestados() + ", ejemplaresRestantes=" + getEjemplaresRestantes() + ", alta=" + isAlta() + ", autor=" + getAutor() + ", editorial=" + getEditorial() + '}';
+    }
 
 }
