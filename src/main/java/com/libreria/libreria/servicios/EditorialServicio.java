@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Esta clase tiene la responsabilidad de llevar adelante las funcionalidades
+ * necesarias para administrar editoriales (consulta, creación, modificación y dar
+ * de baja).
+ *
+ *
+ */
 @Service
 public class EditorialServicio {
 
@@ -21,9 +28,15 @@ public class EditorialServicio {
             throw new ErroresServicio("El nombre no puede estar vacío.");
         }
     }
-
-    @Transactional(propagation = Propagation.NESTED)
-    public void crear(String nombre) throws ErroresServicio {
+    
+    /**
+     * Método para registrar una editorial.
+     *
+     * @param nombre
+     * @throws Exception
+     */
+    @Transactional
+    public void agregarEditorial(String nombre) throws ErroresServicio {
         validar(nombre);
         Editorial editorial = new Editorial();
         editorial.setNombre(nombre);
@@ -32,7 +45,7 @@ public class EditorialServicio {
         editorialRepositorio.save(editorial);
     }
 
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional
     public void modificar(String id, String nombre) throws ErroresServicio {
         validar(nombre);
         Optional<Editorial> respuesta = editorialRepositorio.findById(id);

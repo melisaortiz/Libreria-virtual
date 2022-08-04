@@ -19,7 +19,7 @@ public class PortalControlador {
         return "/index";
     }
 
-    @GetMapping("/login")
+     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) {
         if (error != null) {
             model.put("error", "Usuario o clave incorrectos.");
@@ -29,6 +29,7 @@ public class PortalControlador {
         }
         return "login.html";
     }
+
 
     @GetMapping("/libros")
     public String libros(ModelMap model) {

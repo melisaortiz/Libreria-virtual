@@ -1,55 +1,48 @@
-//package com.libreria.libreria.controladores;
-//
-//import com.libreria.libreria.entidades.Autor;
-//import com.libreria.libreria.enums.Pais;
-//import com.libreria.libreria.errores.ErroresServicio;
-//import com.libreria.libreria.servicios.AutorServicio;
-//import java.util.List;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.ModelMap;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.multipart.MultipartFile;
-//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-//
-//@Controller
-//@RequestMapping("/autor")
-//public class AutorControlador {
-//
+package com.libreria.libreria.controladores;
+
+import com.libreria.libreria.entidades.Usuario;
+import com.libreria.libreria.errores.ErroresServicio;
+import com.libreria.libreria.servicios.UsuarioServicio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+@Controller
+@RequestMapping("/usuario")
+public class UsuarioControlador {
+
+    @Autowired
+    private UsuarioServicio usuarioServicio;
+
 //    @Autowired
-//    private AutorServicio autorServicio;
-//
-//    private Autor autor;
-//
-//    @GetMapping("/autor")
-//    public String autor() {
-//        return "/autor";
-//    }
-//
-//    @GetMapping("/crear_autor")
-//    public String crearAutor() {
-//        return "/crear_autor";
-//    }
-//
-//    @PostMapping("/registrar_autor")
-//    public String registrarAutor(MultipartFile archivo, ModelMap modelo, @RequestParam String nombre, String descripcion, Pais pais) throws Exception {
-//        try {
-//
-//            autorServicio.agregarAutor(archivo, nombre, descripcion, pais);
-//            System.out.println("Nombre: " + nombre);
-//            modelo.put("exito", "Autor registrado con éxito.");
-//            return "/crear_autor";
-//
-//        } catch (ErroresServicio ex) {
-//
-//            modelo.put("error", ex.getMessage()); //Con la clase modelMap podemos mostrar los errores de las excepciones en nuestro html
-//            return "/crear_autor";
-//        }
-//    }
+//    private Usuario usuario;
+
+   
+    @PostMapping("/registrar_usuario")
+    public String registrarUsuario(MultipartFile archivo, ModelMap modelo, @RequestParam String nombre, @RequestParam String dni, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave, @RequestParam String clave2) throws Exception {
+        try {
+
+            usuarioServicio.registrar(archivo, nombre, dni, telefono, mail, clave, clave2);
+
+            modelo.put("exito", "Usuario registrado con éxito.");
+            return "libros.html";
+
+        } catch (ErroresServicio ex) {
+            modelo.put("error", ex.getMessage()); //Con la clase modelMap podemos mostrar los errores de las excepciones en nuestro html
+            modelo.put("nombre", nombre);
+            modelo.put("dni", dni);
+            modelo.put("telefono", telefono);
+            modelo.put("mail", mail);
+            modelo.put("clave", clave);
+
+            return "login.html";
+        }
+    }
 //
 //    @GetMapping("/modificar_autor")
 //    public String modificarAutor(ModelMap modelo) {
@@ -122,4 +115,6 @@
 ////            return "listar_autores";
 ////        }
 ////    }
-//}
+//
+
+}

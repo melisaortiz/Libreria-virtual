@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.libreria.libreria.entidades;
 
 import javax.persistence.Column;
@@ -11,68 +6,51 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * La entidad editorial modela las editoriales de los libros.
+ */
 @Entity
 public class Editorial {
-  @Id
+
+    @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-    
-   @Column (nullable = false)
     private String nombre;
-    private Boolean alta;  
-    
-    //CONSTRUCTORES
+    private boolean alta;
 
+    //CONSTRUCTORES
     public Editorial() {
     }
 
-    public Editorial(String nombre, Boolean alta) {
+    public Editorial(String id, String nombre, boolean alta) {
+        this.id = id;
         this.nombre = nombre;
         this.alta = alta;
     }
-    
-    //GETTERS Y SETTERS
 
-    /**
-     * @return the id
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(String id) {
         this.id = id;
     }
 
-    /**
-     * @return the nombre
-     */
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    /**
-     * @return the alta
-     */
-    public Boolean getAlta() {
+    public boolean isAlta() {
         return alta;
     }
 
-    /**
-     * @param alta the alta to set
-     */
-    public void setAlta(Boolean alta) {
+    //GETTERS Y SETTERS
+    public void setAlta(boolean alta) {
         this.alta = alta;
     }
 
@@ -81,6 +59,5 @@ public class Editorial {
     public String toString() {
         return "Editorial{" + "id=" + id + ", nombre=" + nombre + ", alta=" + alta + '}';
     }
-    
-    
+
 }
