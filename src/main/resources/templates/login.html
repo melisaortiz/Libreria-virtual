@@ -67,27 +67,24 @@
                             </div>
                             <div class="modal-body">
                                 <form action="">
-                                    <label>Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" th:value="${nombre}" />
+                                    <label>Nombre y apellido *</label>
+                                    <input type="text" class="form-control" name="nombre" required th:value="${nombre}" />
                                     <br>
-                                    <label>Apellido</label>
-                                    <input type="text" class="form-control" name="apellido" th:value="${apellido}" />
-                                    <br>
-                                    <label for="dni">DNI</label>
-                                    <input type="number" class="form-control" name="dni" th:value="${dni}" />
+                                    <label for="dni">DNI *</label>
+                                    <input type="number" class="form-control" name="dni" required th:value="${dni}" />
                                     <br>
                                     <label for="telefono">Teléfono</label>
                                     <input type="number" class="form-control" name="telefono" th:value="${telefono}" />
                                     <br>
-                                    <label for="mail">Correo electrónico</label>
-                                    <input type="mail" class="form-control" name="mail" th:value="${mail}" />
+                                    <label for="mail">Correo electrónico *</label>
+                                    <input type="mail" class="form-control" name="mail" required th:value="${mail}" />
                                     <br>
-                                    <label for="clave">Contraseña</label>
-                                    <input type="password" class="form-control" name="clave" />
+                                    <label for="clave">Contraseña *</label>
+                                    <input type="password" class="form-control" name="clave" required />
                                     <small id="claveHelp" class="form-text text-muted">Debe contener al menos 6 caracteres.</small>
                                     <br>
-                                    <label for="clave2">Reingrese la contraseña</label>
-                                    <input type="password" class="form-control" name="clave2" />
+                                    <label for="clave2">Reingrese la contraseña *</label>
+                                    <input type="password" class="form-control" name="clave2" required/>
                                     <br>
                                     <label>Foto de perfil</label>
                                     <input type="file" class="form-control bg-dark text-white" name="archivo" th:value="${archivo}" id="file" />
