@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Libros- Librería virtual</title>
     <link rel="stylesheet" href="/css/style-libros.css">
     <link rel="stylesheet" href="/js/script-menu.js">
     <!-- Link Swiper's CSS -->
@@ -42,8 +42,8 @@
 
         <ul>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="search" placeholder="Buscar libro" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
             <li>
                 <p>Filtros</p>
@@ -98,7 +98,14 @@
                         </div>
                 </ul>
             </li>
-            <li>Home</li>
+            <li>
+                <p>Filtros</p>
+                <ul>
+                    <li><a href="">Todos los libros</a></li>
+                    <li><a href="">Todos los autores</a></li>
+                    <li><a href="">Todos las editoriales</a></li>
+                </ul>
+            </li>
         </ul>
         </div>
 
@@ -178,41 +185,106 @@
         </section>
 
         <section class="libros-destacados">
-            <h2></h2>
+            <h2>Libros destacados</h2>
             <div class="cards">
                 <div class="card--conteiner">
                     <div class="card__item">
                         <img class="card__img" src="/img/portada (1).jpeg" alt="">
-                        <h2>Imagen 1</h2>
-                        <p></p>
+                        <div>
+                            <h4>Nombre libro aqui</h4>
+                            <p>Autor aqui</p>
+                            <p>Editorial aqui</p>
+                            <button class="comprar"> Comprar</button>
+                            <button class="alquilar"> Alquilar</button>
+                        </div>
                     </div>
                     <div class="card__item">
                         <img class="card__img" src="/img/portada (2).jpg" alt="">
-                        <h2>Imagen 1</h2>
-                        <p></p>
+                        <div>
+                            <h4>Nombre libro aqui</h4>
+                            <p>Autor aqui</p>
+                            <p>Editorial aqui</p>
+                            <button class="comprar"> Comprar</button>
+                            <button class="alquilar"> Alquilar</button>
+                        </div>
                     </div>
                     <div class="card__item">
                         <img class="card__img" src="/img/portada (3).jpg" alt="">
-                        <h2>Imagen 1</h2>
-                        <p></p>
+                        <div>
+                            <h4>Nombre libro aqui</h4>
+                            <p>Autor aqui</p>
+                            <p>Editorial aqui</p>
+                            <button class="comprar"> Comprar</button>
+                            <button class="alquilar"> Alquilar</button>
+                        </div>
                     </div>
                     <div class="card__item">
                         <img class="card__img" src="/img/portada (4).jpg" alt="">
-                        <h2>Imagen 1</h2>
-                        <p></p>
+                        <div>
+                            <h4>Nombre libro aqui</h4>
+                            <p>Autor aqui</p>
+                            <p>Editorial aqui</p>
+                            <button class="comprar"> Comprar</button>
+                            <button class="alquilar"> Alquilar</button>
+                        </div>
                     </div>
                     <div class="card__item">
                         <img class="card__img" src="/img/portada (5).jpg" alt="">
-                        <h2>Imagen 1</h2>
-                        <p></p>
+                        <div>
+                            <h4>Nombre libro aqui</h4>
+                            <p>Autor aqui</p>
+                            <p>Editorial aqui</p>
+                            <button class="comprar"> Comprar</button>
+                            <button class="alquilar"> Alquilar</button>
+                        </div>
                     </div>
                     <div class="card__item">
                         <img class="card__img" src="/img/portada (6).jpg" alt="">
-                        <h2>Imagen 1</h2>
-                        <p></p>
+                        <div>
+                            <h4>Nombre libro aqui</h4>
+                            <p>Autor aqui</p>
+                            <p>Editorial aqui</p>
+                            <button class="comprar"> Comprar</button>
+                            <button class="alquilar"> Alquilar</button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="card__button-ver-mas">
+                <button id="card__ver-mas">Ver más</button>
+            </div>
+        </section>
 
+        <section class="autores-destacados">
+            <h2>Autores destacados</h2>
+            <div class="cards-autores">
+                <div class="card--conteiner-autores">
+                    <div class="card__item-autor">
+                        <img class="card__img-autor" src="/img/jk-rowling.jpg" alt="">
+                        <div>
+                            <h4>Nombre autor aqui</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div class="card__item-autor">
+                        <img class="card__img-autor" src="/img/gabriel-garcia-marquez.jpg" alt="">
+                        <div>
+                            <h4>Nombre autor aqui</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div class="card__item-autor">
+                        <img class="card__img-autor" src="/img/stephen-king.jpg" alt="">
+                        <div>
+                            <h4>Nombre autor aqui</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card__button-ver-mas">
+                <button id="card__ver-mas">Ver más</button>
             </div>
         </section>
 

@@ -34,5 +34,10 @@ public class PortalControlador {
     public String libros(ModelMap model) {
         return "libros.html";
     }
+    
+    @GetMapping("/admin")
+    public String admin(ModelMap model) {
+        return "administrador.html";
+    }
 
 }
