@@ -52,20 +52,26 @@ public class LibroServicio {
      * @param titulo
      * @param anio
      * @param descripcion
+     * @param precio
      * @param ejemplares
      * @param autor
+     * @param categoria
      * @param editorial
+     * @throws com.libreria.libreria.errores.ErroresServicio
      * @throws Exception
      */
     @Transactional(propagation = Propagation.NESTED)
-    public void crearLibro(MultipartFile archivo, Long isbn, String titulo, Integer anio, String descripcion, Integer precio, Autor autor, Editorial editorial, Categoria categoria, Integer ejemplares, Integer ejemplaresPresatdos, Integer ejemplaresRestantes) throws ErroresServicio, Exception {
+    public void crearLibro(MultipartFile archivo, Long isbn, String titulo, Integer anio, String descripcion, Integer precio, Autor autor, Editorial editorial, Categoria categoria, Integer ejemplares) throws ErroresServicio, Exception {
         try {
-            Libro libro = new Libro();
             //Se validan que esten bien los datos ingresados
-             validar(isbn, titulo, anio,  descripcion, precio, ejemplares);
+            System.out.println("Se validan los datos");
+            validar(isbn, titulo, anio, descripcion, precio, ejemplares);
+            System.out.println("datos validados");
+            //Creación del libro
+            Libro libro = new Libro();
 
             //seteo de atributos
-            libro.setAlta(Boolean.TRUE);
+            libro.setAlta(true);
             libro.setCompra(true);
             libro.setIsbn(isbn);
             libro.setTitulo(titulo);
@@ -75,19 +81,21 @@ public class LibroServicio {
             libro.setEjemplares(ejemplares);
             libro.setEjemplaresPrestados(0);
             libro.setEjemplaresRestantes(ejemplares);
+            libro.setCategoria(categoria);
+            System.out.println("seteo de tributos bien, sin autor ni editor");
             libro.setAutor(autor);
             libro.setEditorial(editorial);
+            System.out.println("Seteo de autor y editorial");
 
-            // Se da de alta el autor en caso de que esté dado de baja:
-            if (!libro.getAutor().isAlta()) {
-                autorServicio.habilitarAutor(libro.getAutor().getId());
-            }
-
-            // Se da de alta la editorial en caso de que esté dado de baja:
-//            if (!libro.getEditorial().isAlta()) {
-//                editorialServicio.habilitarEditorial(libro.getEditorial().getId());
+//            // Se da de alta el autor en caso de que esté dado de baja:
+//            if (!libro.getAutor().isAlta()) {
+//                autorServicio.habilitarAutor(libro.getAutor().getId());
 //            }
-
+//
+//            //Se da de alta la editorial en caso de que esté dado de baja:
+//            if (!libro.getEditorial().isAlta()) {
+//                editorialServicio.habilitar(libro.getEditorial().getId());
+//            }
             //Se guarda la foto
             Foto foto = fotoServicio.guardar(archivo);
             libro.setFoto(foto);
@@ -121,7 +129,7 @@ public class LibroServicio {
     public void modificarLibro(String id, MultipartFile archivo, Long isbn, String titulo, Integer anio, String descripcion, Integer ejemplares, Integer precio, Autor autor, Editorial editorial, Categoria categoria, Integer ejemplaresPrestados) throws ErroresServicio, Exception {
         try {
             //Validación de datos ingresados:
-            validar(isbn, titulo, anio,  descripcion, precio, ejemplares);
+            validar(isbn, titulo, anio, descripcion, precio, ejemplares);
             validarEjemplares(ejemplares, ejemplaresPrestados);
             // Usamos el repositorio para que busque el libro cuyo id sea el pasado como parámetro.
             Optional<Libro> respuesta = libroRepositorio.findById(id);
@@ -244,7 +252,7 @@ public class LibroServicio {
     public void habilitarLibro(String id) throws ErroresServicio, Exception {
         try {
             // Usamos el repositorio para que busque el arte cuyo id sea el pasado como parámetro.
-                Libro libro = libroRepositorio.getById(id);
+            Libro libro = libroRepositorio.getById(id);
             if (libro != null) { // El libro con ese id SI existe en la DB
                 // Se da de alta el libro:
                 libro.setCompra(true);
@@ -256,7 +264,7 @@ public class LibroServicio {
             throw new Exception("Error al intentar dar de baja el libro.");
         }
     }
-    
+
     /**
      * El método sirve para setear como 'false' el atributo 'compra' del libro.
      *
@@ -279,7 +287,7 @@ public class LibroServicio {
             throw new Exception("Error al intentar dar de baja el libro.");
         }
     }
-    
+
     /**
      * No se tienen en cuenta ni el Autor ni la Editorial, ya que se podrán
      * seleccionar de una lista.
@@ -288,41 +296,42 @@ public class LibroServicio {
      * @param titulo
      * @param anio
      * @param descripcion
+     * @param precio
      * @param ejemplares
-     * @throws Exception
+     * @throws com.libreria.libreria.errores.ErroresServicio
      */
-     public void validar(Long isbn, String titulo, Integer anio, String descripcion, Integer precio, Integer ejemplares) throws ErroresServicio {
+    public void validar(Long isbn, String titulo, Integer anio, String descripcion, Integer precio, Integer ejemplares) throws ErroresServicio {
 
         if (isbn == null || isbn.toString().length() != 8) {
             throw new ErroresServicio("El ISBN debe tener 8 caracteres");
         }
-
+        System.out.println("validacion isbn pasada");
         if (titulo == null || titulo.trim().isEmpty()) {
             throw new ErroresServicio("El titulo no debe estar vacío");
         }
-
+        System.out.println("validacion titulo pasada");
         if (anio == null || anio.toString().length() > 4) {
             throw new ErroresServicio("El año no debe tener más de 4 caracteres");
         }
-        
+        System.out.println("validacion año pasada");
         if (descripcion == null || descripcion.trim().isEmpty()) {
             throw new ErroresServicio("La descripción es obligatoria.");
         }
-        
+        System.out.println("validacion descripcion 1 pasada");
         if (descripcion.length() > 255) {
             throw new ErroresServicio("La descripción no puede tener más de 200 caracteres.");
         }
-
-        if (ejemplares == null || ejemplares >= 0) {
+        System.out.println("validacion descripcion 2 pasada");
+        if (ejemplares == null || ejemplares <= 0) {
             throw new ErroresServicio("La cantidad de ejemplares no debe ser nula.");
         }
-        
-         if (precio < 0 || precio == null) {
+        System.out.println("validacion ejemplares pasada");
+        if (precio < 0 || precio == null) {
             throw new ErroresServicio("Precio ingresado no es válido.");
         }
-
+        System.out.println("validacion precio pasada");
     }
-     
+
     public void validarEjemplares(Integer ejemplares, Integer ejemplaresPrestados) throws ErroresServicio {
         //Validamos que la cantidad de ejempalares para que no arroje un numero negativo en los ejemplares restantes
         if (ejemplares < ejemplaresPrestados) {
@@ -330,22 +339,23 @@ public class LibroServicio {
         }
     }
 
-   // ------------------------------ MÉTODOS DEL REPOSITORIO ------------------------------
-
+    // ------------------------------ MÉTODOS DEL REPOSITORIO ------------------------------
     /**
-     *Busca los libros por id
+     * Busca los libros por id
+     *
      * @param id
      * @return
      */
     public Libro getById(String id) {
         return libroRepositorio.getById(id);
     }
-   
+
     /**
      *
-     Lista los libros según su autor
+     * Lista los libros según su autor
+     *
      * @param idAutor
-     * @return 
+     * @return
      */
     public List<Libro> buscarPorAutor(String idAutor) {
         return libroRepositorio.buscarPorAutor(idAutor);
@@ -353,14 +363,15 @@ public class LibroServicio {
 
     /**
      *
-     Lista los libros según su editorial
+     * Lista los libros según su editorial
+     *
      * @param idEditorial
-     * @return 
+     * @return
      */
-      public List<Libro> buscarPorEditorial(String idEditorial) {
+    public List<Libro> buscarPorEditorial(String idEditorial) {
         return libroRepositorio.buscarPorEditorial(idEditorial);
     }
-   
+
     /**
      * Sólo devuelve todos los libros.
      *
@@ -370,8 +381,7 @@ public class LibroServicio {
         return libroRepositorio.findAll();
     }
 
-    
-     /**
+    /**
      * Sólo devuelve todos los libros dados de alta.
      *
      * @return
@@ -379,7 +389,7 @@ public class LibroServicio {
     public List<Libro> findAllAltaIsTrue() {
         return libroRepositorio.findAllAltaIsTrue();
     }
-    
+
     /**
      * Sólo devuelve los libro dados de baja.
      *
@@ -388,9 +398,8 @@ public class LibroServicio {
 //    public List<Libro> listarDeBaja() {
 //        return libroRepositorio.listarDeBaja();
 //    }
-    
-     /**
-     *Devuelve los libro comprados.
+    /**
+     * Devuelve los libro comprados.
      *
      * @return
      */
@@ -407,17 +416,15 @@ public class LibroServicio {
 //    public List<Long> sumaCarrito() {
 //        return libroRepositorio.sumaCarrito();
 //    }
-    
-    
-     /**
+    /**
      *
-     Lista los libros según su categoria
+     * Lista los libros según su categoria
+     *
      * @param categoria
-     * @return 
+     * @return
      */
     public List<Libro> buscarPorCategoria(Categoria categoria) {
         return libroRepositorio.buscarPorCategoria(categoria);
     }
-
 
 }

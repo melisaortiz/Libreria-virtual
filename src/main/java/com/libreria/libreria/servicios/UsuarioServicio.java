@@ -49,8 +49,7 @@ public class UsuarioServicio implements UserDetailsService {
      *
      * @param archivo --> foto de perfil
      * @param nombre
-     * @param apellido
-     * @param dni
+      * @param dni
      * @param telefono
      * @param mail
      * @param clave
@@ -263,9 +262,7 @@ public class UsuarioServicio implements UserDetailsService {
         if (dni == null || dni.isEmpty()) {
             throw new Exception("El DNI del usuario es obligatorio.");
         }
-        if (telefono == null || telefono.isEmpty()) {
-            throw new Exception("El telefono del usuario es obligatorio.");
-        }
+        
         if (mail == null || mail.isEmpty()) {
             throw new Exception("El mail del usuario es obligatorio.");
         }

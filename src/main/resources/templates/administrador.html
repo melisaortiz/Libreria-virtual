@@ -11,6 +11,7 @@
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <!-- Boostrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- Link icons google -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -47,19 +48,320 @@
             <li>
                 <p>Libros</p>
                 <ul>
-                    <li><a href=""><span class="material-symbols-outlined">add_box</span>Agregar libro</a></li>
-                    <li><a href=""><span class="material-symbols-outlined">edit_square</span>Editar libro</a></li>
-                    <li><a href=""><span class="material-symbols-outlined">delete</span>Eliminar libro</a></li>
-                    <li><a href=""><span class="material-symbols-outlined">assignment</span>Ver todos los libros</a></li>
-                    <li><a href=""><span class="material-symbols-outlined">calendar_month</span>Libros alquilados</a></li>
-                    <li><a href=""><span class="material-symbols-outlined">bookmark</span>Editar libros destacados</a></li>
+                    <li>
+
+                        <!-- Button crear libro/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-libro">
+                            <span class="material-symbols-outlined">add_box</span>Agregar libro</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="crear-libro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> <span class="material-symbols-outlined">add_box</span>Agregar libro</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/libro/crear_libro" method="POST" enctype="multipart/form-data">
+
+                                            <label>Título *</label>
+                                            <input type="text" class="form-control" name="titulo" required th:value="${titulo}" />
+                                            <br>
+                                            <label for="isbn">ISBN *</label>
+                                            <input type="text" class="form-control" name="isbn" required th:value="${isbn}" />
+                                            <br>
+                                            <label for="descripcion">Descripción</label>
+                                            <input type="text" class="form-control" name="descripcion" th:value="${descripcion}" />
+                                            <small id="descripcionHelp" class="form-text text-muted">Reseña de máx. 255 caracteres que identifica el libro.</small>
+                                            <br>
+                                            <label for="anio">Año de creación *</label>
+                                            <input type="number" class="form-control" name="anio" required th:value="${anio}" />
+                                            <br>
+                                            <label for="precio">Precio *</label>
+                                            <input type="number" class="form-control" name="precio" required th:value="${precio}" />
+                                            <br>
+                                            <label for="ejemplares">Ejemplares *</label>
+                                            <input type="number" class="form-control" name="ejemplares" required th:value="${ejemplares}" />
+                                            <br>
+                                            <label for="autor">Autor del libro *</label>
+                                            <select class="form-control custom-select" name="idAutor">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
+                                                </select>
+                                            <small id="descripcionHelp" class="form-text text-muted">Si el autor del libro no se encuentra en la lista debe crearlo en la sección "Autor".</small>
+                                            <br>
+                                            <label for="editorial">Editorial del libro *</label>
+                                            <select class="form-control custom-select" name="idEditorial">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="editorial : ${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}"></option>
+                                                </select>
+                                            <small id="descripcionHelp" class="form-text text-muted">Si la editorial del libro no se encuentra en la lista debe crearlo en la sección "Editorial".</small>
+                                            <br>
+                                            <label for="categoria">Categoría *</label>
+                                            <select class="form-control custom-select" name="categoria">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="libro : ${categorias}" th:value="${libro}" th:text="${libro.displayName()}"></option> 
+                                                </select>
+                                            <br>
+                                            <label>Foto de portada</label>
+                                            <input type="file" class="form-control bg-dark text-white" name="archivo" th:value="${archivo}" id="file" />
+                                            <small id="fotoHelp" class="form-text text-muted">Ingrese una foto que represente al libro.</small>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar libro</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <!-- Button editar libro/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar-libro">
+                        <span class="material-symbols-outlined">edit_square</span>Editar libro</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editar-libro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><span class="material-symbols-outlined">edit_square</span>Editar libro</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/libro/modificar_libro" method="POST" enctype="multipart/form-data">
+
+                                            <label>Título *</label>
+                                            <input type="text" class="form-control" name="titulo" required th:value="${titulo}" />
+                                            <br>
+                                            <label for="isbn">ISBN *</label>
+                                            <input type="text" class="form-control" name="isbn" required th:value="${isbn}" />
+                                            <br>
+                                            <label for="descripcion">Descripción</label>
+                                            <input type="text" class="form-control" name="descripcion" th:value="${descripcion}" />
+                                            <br>
+                                            <label for="anio">Año de creación *</label>
+                                            <input type="number" class="form-control" name="anio" required th:value="${anio}" />
+                                            <br>
+                                            <label for="precio">Precio *</label>
+                                            <input type="number" class="form-control" name="precio" required th:value="${precio}" />
+                                            <br>
+                                            <label for="ejemplares">Ejemplares *</label>
+                                            <input type="number" class="form-control" name="ejemplares" required th:value="${ejemplares}" />
+                                            <br>
+                                            <label for="autor">Autor del libro *</label>
+                                            <input type="text" class="form-control" name="autor" required th:value="${autor}" />
+                                            <br>
+                                            <label for="editorial">Editorial del libro *</label>
+                                            <input type="text" class="form-control" name="editorial" required th:value="${editorial}" />
+                                            <br>
+                                            <label for="categoria">Categoría *</label>
+                                            <input type="text" class="form-control" name="categoria" required th:value="${categoria}" />
+                                            <br>
+                                            <label>Foto de portada</label>
+                                            <input type="file" class="form-control bg-dark text-white" name="archivo" th:value="${archivo}" id="file" />
+                                            <small id="fotoHelp" class="form-text text-muted">Ingrese una foto que represente al libro.</small>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar libro</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <!-- Button eliminar libro/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eliminar-libro">
+                        <span class="material-symbols-outlined">delete</span>Eliminar libro</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="eliminar-libro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> <span class="material-symbols-outlined">delete</span>Eliminar libro</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary">Confirmar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Button Ver todos los libros libro/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ver-libros">
+                        <span class="material-symbols-outlined">assignment</span>Ver todos los libros</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="ver-libros" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> <span class="material-symbols-outlined">assignment</span>Ver todos los libro</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Button Ver todos los libros alquilados/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#libros-alquilados">
+                        <span class="material-symbols-outlined">calendar_month</span>Libros alquilados</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="libros-alquilados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><span class="material-symbols-outlined">calendar_month</span>Libros alquilados</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Button editar libros destacados/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar-destacados">
+                        <span class="material-symbols-outlined">bookmark</span>Editar libros destacados</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editar-destacados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> <span class="material-symbols-outlined">bookmark</span>Editar libros destacados</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary">Confirmar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </li>
             <li>
                 <p>Autor</p>
                 <ul>
-                    <li><a href=""><span class="material-symbols-outlined">add_box</span>Agregar autor</a></li>
-                    <li><a href=""><span class="material-symbols-outlined">edit_square</span>Editar autor</a></li>
+                    <li>
+                        <!-- Button crear autor/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-autor">
+                        <span class="material-symbols-outlined">add_box</span>Agregar autor</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="crear-autor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> <span class="material-symbols-outlined">add_box</span>Agregar autor</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/autor/crear_autor" method="POST" enctype="multipart/form-data">
+
+                                            <label>Nombre *</label>
+                                            <input type="text" class="form-control" name="nombreAutor" th:value="${nombreAutor}" required/>
+                                            <br>
+                                            <label for="descripcion">Descripción *</label>
+                                            <input type="text" class="form-control" name="descripcion" th:value="${descripcion}" required/>
+                                            <small id="descripcionHelp" class="form-text text-muted">Reseña de máx. 255 caracteres que identifica el libro.</small>
+                                            <br>
+                                            <label for="pais">País *</label>
+                                            <select class="form-control custom-select" name="pais">
+                                                <option selected disabled value="">Seleccionar...</option>
+                                                <option th:each="libro : ${paises}" th:value="${libro}" th:text="${libro.displayName()}"></option> 
+                                            </select>
+                                            <br>
+                                            <label>Foto del autor</label>
+                                            <input type="file" class="form-control bg-dark text-white" name="archivo" th:value="${archivo}" id="file" />
+                                            <small id="fotoHelp" class="form-text text-muted">Ingrese una foto que represente al autor.</small>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar autor</button>
+                                            </div>
+                                            <div class="alert alert-secondary" role="alert">
+                                                <p th:if="${error != null}" th:text="${error}" style="color:red;"></p>
+                                                <p th:if="${exito != null}" th:text="${exito}" style="color:green;"></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Button editar autor/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar-autor">
+                        <span class="material-symbols-outlined">edit_square</span>Editar autor</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editar-autor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><span class="material-symbols-outlined">edit_square</span>Editar autor</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/autor/modificar_autor" method="POST" enctype="multipart/form-data">
+
+                                            <label for="autor">Autor a modificar *</label>
+                                            <select class="form-control custom-select" name="idAutor">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nombre}" name="idAutor"></option>
+                                                </select>
+                                            <br>
+                                            <label>Nombre</label>
+                                            <input type="text" class="form-control" name="nombre" th:value="${nombre}" />
+                                            <label for="descripcion">Descripción </label>
+                                            <input type="text" class="form-control" name="descripcion" th:value="${descripcion}" />
+                                            <small id="descripcionHelp" class="form-text text-muted">Reseña de máx. 255 caracteres que identifica el libro.</small>
+                                            <br>
+                                            <label for="pais">País </label>
+                                            <select class="form-control custom-select" name="pais">
+                                                <option selected disabled value="">Seleccionar...</option>
+                                                <option th:each="libro : ${paises}" th:value="${libro}" th:text="${libro.displayName()}"></option> 
+                                            </select>
+                                            <br>
+                                            <label>Foto del autor</label>
+                                            <input type="file" class="form-control bg-dark text-white" name="archivo" th:value="${archivo}" id="file" />
+                                            <small id="fotoHelp" class="form-text text-muted">Ingrese una foto que represente al autor.</small>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar autor</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li><a href=""><span class="material-symbols-outlined">delete</span>Eliminar autor</a></li>
                     <li><a href=""><span class="material-symbols-outlined">assignment</span>Ver todos los autores</a></li>
                     <li><a href=""><span class="material-symbols-outlined">bookmark</span>Editar autores destacados</a></li>
@@ -68,14 +370,79 @@
             <li>
                 <p>Editorial</p>
                 <ul>
-                    <li><a href=""><span class="material-symbols-outlined">add_box</span>Agregar editorial</a></li>
-                    <li><a href=""><span class="material-symbols-outlined">edit_square</span>Editar editorial</a></li>
+                    <li>
+
+                        <!-- Button crear editorial/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-editorial">
+                        <span class="material-symbols-outlined">add_box</span>Agregar editorial</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="crear-editorial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"> <span class="material-symbols-outlined">add_box</span>Agregar editorial</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/editorial/crear_editorial" method="POST" enctype="multipart/form-data">
+                                            <label>Nombre *</label>
+                                            <input type="text" class="form-control" name="nombre" th:value="${nombre}" required/>
+                                            <br>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar editorial</button>
+                                            </div>
+                                            <div class="alert alert-secondary" role="alert">
+                                                <p th:if="${error != null}" th:text="${error}" style="color:red;"></p>
+                                                <p th:if="${exito != null}" th:text="${exito}" style="color:green;"></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- Button editar autor/  modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editar-editorial">
+                        <span class="material-symbols-outlined">edit_square</span>Editar editorial</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editar-editorial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel"><span class="material-symbols-outlined">edit_square</span>Editar editorial</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/editorial/modificar_editorial" method="POST" enctype="multipart/form-data">
+
+                                            <label for="autor">Editorial a modificar *</label>
+                                            <select class="form-control custom-select" name="idEditorial">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="editorial : ${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}" name="idEditorial"></option>
+                                                </select>
+                                            <br>
+                                            <label>Nombre</label>
+                                            <input type="text" class="form-control" name="nombre" th:value="${nombre}" />
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar editorial</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li><a href=""><span class="material-symbols-outlined">delete</span>Eliminar editorial</a></li>
                     <li><a href=""><span class="material-symbols-outlined">assignment</span>Ver todos las editoriales</a></li>
                 </ul>
             </li>
         </ul>
     </div>
+
+
 
     <section class="libros-destacados">
         <h2>Libros destacados</h2>
@@ -174,6 +541,9 @@
     <script src="/js/script-menu.js"></script>
 
     <!-- Scripts boostrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 </body>

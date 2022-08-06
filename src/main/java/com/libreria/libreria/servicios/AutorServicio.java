@@ -31,42 +31,45 @@ public class AutorServicio {
     /**
      * Método para registrar un autor.
      *
+     * @param archivo
      * @param nombre
+     * @param descripcion
+     * @param pais
      * @throws Exception
      */
     @Transactional
     public void agregarAutor(MultipartFile archivo, String nombre, String descripcion, Pais pais) throws Exception {
-        try {
-            Autor autor = new Autor();
-            // Valido los datos ingresados:
-            validar(nombre, descripcion);
-            // Seteo de atributos:
-            autor.setAlta(true);
-            autor.setNombre(nombre);
-            autor.setDescripcion(descripcion);
-            autor.setPais(pais);
-            Foto foto = fotoServicio.guardar(archivo);
-            autor.setFoto(foto);
 
-            // Persistencia en la DB:
-            autorRepositorio.save(autor);
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
+        // Valido los datos ingresados:
+        validar(nombre, descripcion);
+        Autor autor = new Autor();
+        // Seteo de atributos:
+        autor.setAlta(true);
+        autor.setNombre(nombre);
+        autor.setDescripcion(descripcion);
+        autor.setPais(pais);
+        // Seteo de la foto:
+        Foto foto = fotoServicio.guardar(archivo);
+        autor.setFoto(foto);
+        // Persistencia en la DB:
+        autorRepositorio.save(autor);
     }
 
     /**
      * Método para modificar un autor.
      *
      * @param id
+     * @param archivo
      * @param nombre
+     * @param descripcion
+     * @param pais
      * @throws Exception
      */
     @Transactional
     public void modificarAutor(String id, MultipartFile archivo, String nombre, String descripcion, Pais pais) throws Exception {
         try {
             // Valido los datos ingresados:
-            validar(nombre, descripcion);
+//            validar(nombre, descripcion);
             Optional<Autor> respuesta = autorRepositorio.findById(id);
             if (respuesta.isPresent()) { // El autor con ese id SI existe en la DB
                 Autor autor = respuesta.get();
@@ -91,13 +94,13 @@ public class AutorServicio {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new ErroresServicio("El nombre del autor no puede estar vacío.");
         }
-             if (descripcion == null || descripcion.isEmpty()) {
+        if (descripcion == null || descripcion.isEmpty()) {
             throw new ErroresServicio("La descripción es obligatoria.");
         }
         if (descripcion.length() > 255) {
             throw new ErroresServicio("La descripción no puede tener más de 200 caracteres.");
         }
-        
+
     }
 
     // ------------------------------ MÉTODOS DEL REPOSITORIO ------------------------------
@@ -111,7 +114,8 @@ public class AutorServicio {
     }
 
     /**
-     *Lista todos los autores dados de alta
+     * Lista todos los autores dados de alta
+     *
      * @return
      */
     public List<Autor> findAll() {
@@ -127,8 +131,9 @@ public class AutorServicio {
         return autorRepositorio.getById(id);
     }
 
-     /**
-     *Elimina el autor cuyo id se pasa por parametro
+    /**
+     * Elimina el autor cuyo id se pasa por parametro
+     *
      * @return
      */
     @Transactional
@@ -148,7 +153,8 @@ public class AutorServicio {
     }
 
     /**
-     *Da de baja el autor cuyo id se pasa por parametro
+     * Da de baja el autor cuyo id se pasa por parametro
+     *
      * @return
      */
     @Transactional
@@ -169,12 +175,13 @@ public class AutorServicio {
     }
 
     /**
-     *Da de alta el autor cuyo id se pasa por parametro
+     * Da de alta el autor cuyo id se pasa por parametro
+     *
      * @return
      */
     @Transactional
     public void habilitarAutor(String id) throws ErroresServicio, Exception {
-               try {
+        try {
             Optional<Autor> respuesta = autorRepositorio.findById(id);
             if (respuesta.isPresent()) { // El autor con ese id SI existe en la DB
                 Autor autor = respuesta.get();
@@ -182,7 +189,7 @@ public class AutorServicio {
                 // Persistencia en la DB:
                 autorRepositorio.save(autor);
                 // Dar de alta todos sus libros:
-              
+
             } else { // El autor con ese id NO existe en la DB
                 throw new Exception("No existe el autor con el id indicado.");
             }
