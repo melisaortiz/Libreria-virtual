@@ -159,6 +159,36 @@ nav ul li button a#login {
 }
 
 
+/* SIDEBAR MODALS */
+
+.btn.btn-primary {
+    background: none;
+    color: black;
+    border: none;
+}
+
+.btn.btn-primary:hover {
+    background: none;
+    color: #7307a3;
+    border: none;
+}
+
+.btn.btn-primary::before {
+    background: none;
+    color: #7307a3;
+    border: none;
+}
+
+.modal-footer .btn.btn-primary {
+    background-color: #633cbe;
+    color: #fff;
+}
+
+.modal-backdrop.fade.show {
+    z-index: 10;
+}
+
+
 /* LIBROS DESTACADOS */
 
 section.libros-destacados {

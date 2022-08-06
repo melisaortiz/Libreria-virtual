@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Esta clase tiene la responsabilidad de llevar adelante las funcionalidades
- * necesarias para administrar editoriales (consulta, creación, modificación y dar
- * de baja).
+ * necesarias para administrar editoriales (consulta, creación, modificación y
+ * dar de baja).
  *
  *
  */
@@ -28,7 +28,7 @@ public class EditorialServicio {
             throw new ErroresServicio("El nombre no puede estar vacío.");
         }
     }
-    
+
     /**
      * Método para registrar una editorial.
      *
@@ -85,12 +85,26 @@ public class EditorialServicio {
         }
     }
 
+    // ------------------------------ MÉTODOS DEL REPOSITORIO ------------------------------
+    /**
+     *
+     * @param nombre
+     * @return
+     */
+    public Editorial buscarPorNombre(String nombre) {
+        return editorialRepositorio.buscarPorNombre(nombre);
+    }
+    
     @Transactional(readOnly = true)
     public List<Editorial> buscarTodosPorNombre() {
 
         List<Editorial> editoriales = editorialRepositorio.findAll();
 
         return editoriales;
+    }
+
+    public List<Editorial> findAll() {
+        return editorialRepositorio.findAll();
     }
 
     @Transactional(propagation = Propagation.NESTED)
@@ -104,4 +118,13 @@ public class EditorialServicio {
         }
     }
 
+     /**
+     *
+     * @param id
+     * @return
+     */
+    public Editorial getById(String id) {
+        return editorialRepositorio.getById(id);
+    }
+    
 }
