@@ -1,85 +1,351 @@
-@font-face {
-    src: url(../font/BebasNeue-Regular.ttf);
-    font-family: Bebas Neue;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #131313;
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
-.encabezado {
-    padding: 100px;
-    background-image: linear-gradient(175deg, #ffff69 0, #ffff69 6.25%, #ffff6c 12.5%, #ffff71 18.75%, #f0ff79 25%, #d1ff81 31.25%, #b0ff8a 37.5%, #8dff92 43.75%, #66ff98 50%, #37f09d 56.25%, #00e3a3 62.5%, #00d8a9 68.75%, #00cfb0 75%, #00c8b8 81.25%, #00c3c0 87.5%, #00bfca 93.75%, #00bdd6 100%);
+
+/* NAVBAR */
+
+nav.navbar_gral {
+    background-image: linear-gradient(to right, #0c8af1, #3373e4, #4e59d3, #633cbe, #7307a3);
+    width: 100%;
+    height: 3rem;
+    position: fixed;
+    opacity: 0.89;
+    height: 6rem;
+    z-index: 100;
+    padding-top: 1.5rem;
 }
 
-.encabezado h1 {
-    font-size: 70px;
-    font-weight: 100%;
+nav.navbar_gral ul {
+    justify-content: flex-end;
+    display: flex;
+    list-style: none;
+    margin-right: 5rem;
+    font-weight: 450;
+    font-size: 1.2rem;
+}
+
+nav.navbar_gral ul li:first-child {
+    flex: 1;
+    margin-top: 0rem;
+    display: inherit;
+    font-family: 'Raleway', sans-serif;
+}
+
+nav.navbar_gral ul li {
+    margin-top: 0rem;
+    display: inherit;
+}
+
+nav.navbar_gral ul li a {
+    padding: 1rem;
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+}
+
+nav.navbar_gral ul li a:hover {
+    color: #44BBA4;
+}
+
+nav ul li button {
+    height: 3rem;
+    border: none;
+    border-radius: 2rem;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+nav ul li button a#login {
+    color: black;
+    font-size: 1rem;
+}
+
+
+/* ENCABEZADO */
+
+body main .encabezado {
+    padding: 5%;
+    padding-top: 5rem;
+    padding-bottom: 0;
+    display: flex;
+}
+
+.encabezado div.titulo {
+    width: 100%;
+}
+
+.encabezado div.titulo h1 {
+    font-size: 53px;
+    width: 100%;
+    color: #4e59d3;
+    text-align: inherit;
+    padding-top: 10rem;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+}
+
+.encabezado div p {
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.encabezado div button {
+    height: 3rem;
+    border: none;
+    border-radius: 2rem;
+    width: 70%;
+    padding: 0 2rem;
+    background-color: #2f1b47;
+    margin-top: 5rem;
+}
+
+.encabezado div button a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.encabezado div button:hover {
+    background-color: #3d336e;
+}
+
+.encabezado .encabezado-img {
+    width: 80%;
+}
+
+.encabezado div img {
+    width: 100%;
+}
+
+
+/* NOVEDADES */
+
+section.novedades {
+    margin: 5% 0;
+    padding: 0 3%;
+    background-color: #e2e2e2;
+}
+
+.novedades h5 {
+    font-size: 1.5rem;
     text-align: center;
-    text-shadow: black 20%;
-    margin: 1px;
+    padding-top: 1rem;
 }
 
-.encabezado h1 span {
-    font-family: Bebas Neue;
-    color: #ffffff;
-    font-size: 110px;
-    text-shadow: #000000 0.2em 0.2em 0.3em;
+
+/* NOVEDADES-- Swiper */
+
+.swiper-general {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
 
-#subtitlulo {
-    font-family: Bebas Neue;
-    font-size: 55px;
-    font-weight: 100%;
-    margin-left: 55px;
-    margin: 40px;
+.swiper-general .conteiner {
+    width: 90%;
+    padding: 10px 40px;
+}
+
+.conteiner .swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.conteiner .swiper-slide {
+    position: relative;
+    text-align: start;
+    font-size: 18px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.25);
+}
+
+.conteiner .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.conteiner .card-description {
+    padding: 1rem;
+}
+
+.conteiner .card-description .card-title,
+.conteiner .card-description .card-text {
+    margin-bottom: 0.5rem;
+}
+
+.conteiner .card-description .card-link {
     text-align: center;
-    color: #ffffff;
 }
 
-.elementos li {
-    display: inline-block;
+.conteiner .card-description .card-link a {
+    text-decoration: none;
+    color: #1d6ce2;
+}
+
+
+/* QUIENES SOMOS */
+
+section.quienes-somos {
+    margin: 5% 0;
+    padding: 3%;
+}
+
+.quienes-somos h5 {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
+
+.quienes-somos .nosotros {
+    display: flex;
+    margin: 0 15%;
+    padding: 2rem;
+}
+
+.quienes-somos .nosotros .personal {
+    padding: 0 2rem;
     text-align: center;
     width: 30%;
-    vertical-align: top;
-    margin: 0 0 1.5% 1.5%;
-    padding: 30px 10px;
-    box-sizing: border-box;
-    border-width: 2px;
-    border-style: inset;
-    border-radius: 80px;
 }
 
-.elementos li h2 {
-    font-family: Bebas Neue;
-    font-size: 60px;
+.quienes-somos .nosotros .personal img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 3rem;
 }
 
-.elementos-autor {
-    background-color: #96fcb8;
+
+/* SLOGAN */
+
+section.slogan div {
+    background-image: url(/img/background-index.png);
+    height: 25rem;
+    color: rgb(10, 10, 10);
 }
 
-.elementos-editorial {
-    background-color: #fff679;
+section.slogan div h4 {
+    display: block;
+    margin-left: 20%;
+    padding-top: 10%;
+    padding: 13% 40% 13% 22%;
+    font-size: 25px;
+    color: blueviolet;
 }
 
-.elementos-libro {
-    background-color: #86d6d2;
+
+/* CONTACTO */
+
+section.contacto {
+    padding: 10% 2%;
+    display: flex;
 }
 
-.elementos li:hover {
-    border-color: #3d405b;
-    background-color: #ffffff;
-    color: #000000;
+.contacto div h5 {
+    font-size: 2rem;
 }
 
-.elementos li a:hover {
-    border-color: #3d405b;
-    background-color: #fafafa;
-    color: #020202;
+.contacto div.imgs {
+    width: 60%;
+    margin-left: 20%;
 }
 
-#logo {
-    width: 100px;
-    margin-right: 30px;
+.contacto div.imgs img {
+    width: 10%;
+    padding: 1rem;
+}
+
+
+/* FOOTER */
+
+footer {
+    margin-top: 4rem;
+    padding: 2rem;
+    height: 100%;
+    background-color: #2f1b47;
+    border-top-width: 4px;
+}
+
+footer .footer_flex {
+    display: flex;
+    margin-bottom: 4rem;
+}
+
+footer .footer_flex div {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    color: white;
+    text-align: center;
+}
+
+footer .footer_flex div a:hover {
+    color: #44BBA4;
+}
+
+footer .footer_flex div a {
+    text-decoration: none;
+    color: white;
+}
+
+footer div.footer_informacion {
+    text-align: start;
+}
+
+div.footer_informacion p {
+    padding-bottom: 1rem;
+}
+
+footer div.footer_redes {
+    width: 28.5%;
+    text-align: center;
+}
+
+div.footer_redes p {
+    padding-bottom: 1rem;
+}
+
+footer div.footer_redes ul li {
+    display: flex;
+    padding-right: 1rem;
+}
+
+footer div.footer_redes ul li {
+    padding-left: 40%;
+}
+
+footer div.footer_redes ul li img {
+    margin: 5px;
+}
+
+footer div.footer_redes img.img_footer {
+    width: 40px;
+    height: 40px;
+}
+
+footer .footer_mapa_ubicacion {
+    display: flex;
+    margin: -1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+}
+
+footer .footer_copyright {
+    text-align: center;
+    color: #747474;
+    margin: 0rem;
+    font-size: 12px;
 }

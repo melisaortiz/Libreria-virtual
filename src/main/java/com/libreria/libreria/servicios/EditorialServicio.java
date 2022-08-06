@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Esta clase tiene la responsabilidad de llevar adelante las funcionalidades
+ * necesarias para administrar editoriales (consulta, creación, modificación y
+ * dar de baja).
+ *
+ *
+ */
 @Service
 public class EditorialServicio {
 
@@ -22,8 +29,14 @@ public class EditorialServicio {
         }
     }
 
-    @Transactional(propagation = Propagation.NESTED)
-    public void crear(String nombre) throws ErroresServicio {
+    /**
+     * Método para registrar una editorial.
+     *
+     * @param nombre
+     * @throws Exception
+     */
+    @Transactional
+    public void agregarEditorial(String nombre) throws ErroresServicio {
         validar(nombre);
         Editorial editorial = new Editorial();
         editorial.setNombre(nombre);
@@ -32,7 +45,7 @@ public class EditorialServicio {
         editorialRepositorio.save(editorial);
     }
 
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional
     public void modificar(String id, String nombre) throws ErroresServicio {
         validar(nombre);
         Optional<Editorial> respuesta = editorialRepositorio.findById(id);
@@ -72,12 +85,26 @@ public class EditorialServicio {
         }
     }
 
+    // ------------------------------ MÉTODOS DEL REPOSITORIO ------------------------------
+    /**
+     *
+     * @param nombre
+     * @return
+     */
+    public Editorial buscarPorNombre(String nombre) {
+        return editorialRepositorio.buscarPorNombre(nombre);
+    }
+    
     @Transactional(readOnly = true)
     public List<Editorial> buscarTodosPorNombre() {
 
         List<Editorial> editoriales = editorialRepositorio.findAll();
 
         return editoriales;
+    }
+
+    public List<Editorial> findAll() {
+        return editorialRepositorio.findAll();
     }
 
     @Transactional(propagation = Propagation.NESTED)
@@ -91,4 +118,13 @@ public class EditorialServicio {
         }
     }
 
+     /**
+     *
+     * @param id
+     * @return
+     */
+    public Editorial getById(String id) {
+        return editorialRepositorio.getById(id);
+    }
+    
 }
