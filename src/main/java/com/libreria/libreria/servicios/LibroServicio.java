@@ -121,16 +121,20 @@ public class LibroServicio {
      * @param anio
      * @param descripcion
      * @param ejemplares
+     * @param precio
      * @param autor
      * @param editorial
+     * @param categoria
+     * @param ejemplaresPrestados
+     * @throws com.libreria.libreria.errores.ErroresServicio
      * @throws Exception
      */
     @Transactional
-    public void modificarLibro(String id, MultipartFile archivo, Long isbn, String titulo, Integer anio, String descripcion, Integer ejemplares, Integer precio, Autor autor, Editorial editorial, Categoria categoria, Integer ejemplaresPrestados) throws ErroresServicio, Exception {
+    public void modificarLibro(String id, MultipartFile archivo, Long isbn, String titulo, Integer anio, String descripcion, Integer ejemplares, Integer precio, Autor autor, Editorial editorial, Categoria categoria) throws ErroresServicio, Exception {
         try {
             //Validación de datos ingresados:
             validar(isbn, titulo, anio, descripcion, precio, ejemplares);
-            validarEjemplares(ejemplares, ejemplaresPrestados);
+
             // Usamos el repositorio para que busque el libro cuyo id sea el pasado como parámetro.
             Optional<Libro> respuesta = libroRepositorio.findById(id);
             if (respuesta.isPresent()) { // El libro con ese id SI existe en la DB
@@ -143,8 +147,7 @@ public class LibroServicio {
                 libro.setPrecio(precio);
                 libro.setCategoria(categoria);
                 libro.setEjemplares(ejemplares);
-                libro.setEjemplaresPrestados(ejemplaresPrestados);
-                libro.setEjemplaresRestantes(ejemplares - ejemplaresPrestados);
+              
                 // Seteo de Autor y Editorial:
                 libro.setAutor(autor);
                 libro.setEditorial(editorial);

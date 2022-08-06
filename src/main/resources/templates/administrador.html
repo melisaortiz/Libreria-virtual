@@ -132,7 +132,12 @@
                                     </div>
                                     <div class="modal-body">
                                         <form action="/libro/modificar_libro" method="POST" enctype="multipart/form-data">
-
+                                            <label for="libro">Libro a modificar *</label>
+                                            <select class="form-control custom-select" name="idLibro">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="libro : ${libros}" th:value="${libro.id}" th:text="${libro.titulo}" name="idLibro"></option>
+                                                </select>
+                                            <br>
                                             <label>Título *</label>
                                             <input type="text" class="form-control" name="titulo" required th:value="${titulo}" />
                                             <br>
@@ -152,13 +157,24 @@
                                             <input type="number" class="form-control" name="ejemplares" required th:value="${ejemplares}" />
                                             <br>
                                             <label for="autor">Autor del libro *</label>
-                                            <input type="text" class="form-control" name="autor" required th:value="${autor}" />
+                                            <select class="form-control custom-select" name="idAutor">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
+                                                </select>
+                                            <small id="descripcionHelp" class="form-text text-muted">Si el autor del libro no se encuentra en la lista debe crearlo en la sección "Autor".</small>
                                             <br>
                                             <label for="editorial">Editorial del libro *</label>
-                                            <input type="text" class="form-control" name="editorial" required th:value="${editorial}" />
+                                            <select class="form-control custom-select" name="idEditorial">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="editorial : ${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}"></option>
+                                                </select>
+                                            <small id="descripcionHelp" class="form-text text-muted">Si la editorial del libro no se encuentra en la lista debe crearlo en la sección "Editorial".</small>
                                             <br>
                                             <label for="categoria">Categoría *</label>
-                                            <input type="text" class="form-control" name="categoria" required th:value="${categoria}" />
+                                            <select class="form-control custom-select" name="categoria">
+                                                    <option selected disabled value="">Seleccionar...</option>
+                                                    <option th:each="libro : ${categorias}" th:value="${libro}" th:text="${libro.displayName()}"></option> 
+                                                </select>
                                             <br>
                                             <label>Foto de portada</label>
                                             <input type="file" class="form-control bg-dark text-white" name="archivo" th:value="${archivo}" id="file" />

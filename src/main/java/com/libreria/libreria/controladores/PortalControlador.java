@@ -2,10 +2,12 @@ package com.libreria.libreria.controladores;
 
 import com.libreria.libreria.entidades.Autor;
 import com.libreria.libreria.entidades.Editorial;
+import com.libreria.libreria.entidades.Libro;
 import com.libreria.libreria.enums.Categoria;
 import com.libreria.libreria.enums.Pais;
 import com.libreria.libreria.servicios.AutorServicio;
 import com.libreria.libreria.servicios.EditorialServicio;
+import com.libreria.libreria.servicios.LibroServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class PortalControlador {
 
-//    @Autowired
-//        private LibroServicio libroServicio;
+    @Autowired
+        private LibroServicio libroServicio;
 //    @Autowired
 //    Pais pais;
 
@@ -52,6 +54,9 @@ public class PortalControlador {
         model.put("editoriales", editoriales);
         model.addAttribute("categorias", Categoria.values());
         model.addAttribute("paises", Pais.values());
+        
+        List<Libro> libros = libroServicio.findAll();
+        model.put("libros", libros);
         
         return "administrador.html";
     }

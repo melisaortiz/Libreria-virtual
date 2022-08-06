@@ -46,7 +46,7 @@ public class EditorialServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre) throws ErroresServicio {
+    public void modificarEditorial(String id, String nombre) throws ErroresServicio {
         validar(nombre);
         Optional<Editorial> respuesta = editorialRepositorio.findById(id);
         if (respuesta.isPresent()) {
