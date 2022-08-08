@@ -196,7 +196,6 @@
         grid-template-columns: repeat(3, 1fr);
         grid-auto-rows: 290px;
         /*Definimos el alto de las filas*/
-        padding: 20px;
         grid-gap: 20px;
     }
     
@@ -324,7 +323,6 @@
     
     .card--conteiner_listado-libros {
         display: flex;
-        padding: 10px;
         flex-wrap: wrap;
         flex-direction: column;
         width: 100%;
@@ -413,7 +411,6 @@
     
     .card--conteiner_listado-autores {
         display: flex;
-        padding: 20px;
         flex-wrap: wrap;
         flex-direction: column;
         width: 100%;

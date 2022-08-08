@@ -310,7 +310,6 @@ div.grid {
 
 .card--conteiner_listado-libros {
     display: flex;
-    padding: 20px;
     flex-wrap: wrap;
     flex-direction: column;
     width: 100%;
