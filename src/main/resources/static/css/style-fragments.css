@@ -1,0 +1,150 @@
+/* NAVBAR */
+
+nav.navbar {
+    display: inherit;
+    background-image: linear-gradient(to right, #0c8af1, #3373e4, #4e59d3, #633cbe, #7307a3);
+    width: 100%;
+    height: 3rem;
+    position: fixed;
+    opacity: 0.89;
+    height: 6rem;
+    z-index: 100;
+    padding-top: 1.5rem;
+}
+
+nav.navbar ul {
+    justify-content: flex-end;
+    display: flex;
+    list-style: none;
+    margin-right: 5rem;
+    font-weight: 450;
+    font-size: 1.2rem;
+}
+
+nav.navbar ul li:first-child {
+    flex: 1;
+    margin-top: 0rem;
+    display: inherit;
+    font-family: 'Raleway', sans-serif;
+}
+
+nav.navbar ul li {
+    margin-top: 0rem;
+    display: inherit;
+}
+
+nav.navbar ul li a {
+    padding: 1rem;
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+}
+
+nav.navbar ul li a:hover {
+    color: #44BBA4;
+}
+
+nav.navbar ul li button {
+    height: 3rem;
+    border: none;
+    border-radius: 2rem;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+nav.navbar ul li button a#login {
+    color: black;
+    font-size: 1rem;
+}
+
+nav.navbar p.nombre-usuario {
+    color: white;
+    background: none;
+    height: 100%;
+    width: 20%;
+    border: none;
+    border-radius: 2rem;
+    position: inherit;
+    padding: 1rem 1rem;
+}
+
+
+/* FOOTER */
+
+footer {
+    margin-top: 4rem;
+    padding: 2rem;
+    height: 100%;
+    background-color: #2f1b47;
+    border-top-width: 4px;
+}
+
+footer .footer_flex {
+    display: flex;
+    margin-bottom: 4rem;
+}
+
+footer .footer_flex div {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    color: white;
+    text-align: center;
+}
+
+footer .footer_flex div a:hover {
+    color: #44BBA4;
+}
+
+footer .footer_flex div a {
+    text-decoration: none;
+    color: white;
+}
+
+footer div.footer_informacion {
+    text-align: start;
+}
+
+div.footer_informacion p {
+    padding-bottom: 1rem;
+}
+
+footer div.footer_redes {
+    width: 28.5%;
+    text-align: center;
+}
+
+div.footer_redes p {
+    padding-bottom: 1rem;
+}
+
+footer div.footer_redes ul li {
+    display: flex;
+    padding-right: 1rem;
+}
+
+footer div.footer_redes ul li {
+    padding-left: 40%;
+}
+
+footer div.footer_redes ul li img {
+    margin: 5px;
+}
+
+footer div.footer_redes img.img_footer {
+    width: 40px;
+    height: 40px;
+}
+
+footer .footer_mapa_ubicacion {
+    display: flex;
+    margin: -1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+}
+
+footer .footer_copyright {
+    text-align: center;
+    color: #747474;
+    margin: 0rem;
+    font-size: 12px;
+}

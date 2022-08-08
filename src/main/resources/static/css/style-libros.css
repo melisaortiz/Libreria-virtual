@@ -8,63 +8,6 @@
         background-color: white;
         font-family: 'Montserrat', sans-serif;
     }
-    /* NAVBAR */
-    
-    nav.navbar_gral {
-        background-image: linear-gradient(to right, #0c8af1, #3373e4, #4e59d3, #633cbe, #7307a3);
-        width: 100%;
-        height: 3rem;
-        position: fixed;
-        opacity: 0.89;
-        height: 6rem;
-        z-index: 100;
-        padding-top: 1.5rem;
-    }
-    
-    nav.navbar_gral ul {
-        justify-content: flex-end;
-        display: flex;
-        list-style: none;
-        margin-right: 5rem;
-        font-weight: 450;
-        font-size: 1.2rem;
-    }
-    
-    nav.navbar_gral ul li:first-child {
-        flex: 1;
-        margin-top: 0rem;
-        display: inherit;
-        font-family: 'Raleway', sans-serif;
-    }
-    
-    nav.navbar_gral ul li {
-        margin-top: 0rem;
-        display: inherit;
-    }
-    
-    nav.navbar_gral ul li a {
-        padding: 1rem;
-        text-decoration: none;
-        color: white;
-        font-family: sans-serif;
-    }
-    
-    nav.navbar_gral ul li a:hover {
-        color: #44BBA4;
-    }
-    
-    nav ul li button {
-        height: 3rem;
-        border: none;
-        border-radius: 2rem;
-        width: 100%;
-        padding: 0 2rem;
-    }
-    
-    nav ul li button a#login {
-        color: black;
-        font-size: 1rem;
-    }
     /* SIDEBAR */
     
     #sidebar {
@@ -232,7 +175,9 @@
     
     section.libros-destacados {
         width: 100%;
+        height: 100%;
         padding: 2% 10%;
+        padding-left: 19%;
         background-color: #c1d1d6;
     }
     
@@ -276,11 +221,11 @@
         background: #7307a3;
         border: none;
         color: white;
-        padding: 0.5rem;
-        padding-left: 40px;
+        padding: 0.3rem;
+        padding-left: 40%;
         text-transform: uppercase;
-        margin-top: 2rem;
-        margin-left: -30px;
+        margin-top: 0%;
+        margin-left: -30%;
         z-index: -10;
     }
     
@@ -288,11 +233,11 @@
         background: #4e59d3;
         border: none;
         color: white;
-        padding: 0.5rem;
-        padding-left: 40px;
+        padding: 0.3rem;
+        padding-left: 40%;
         text-transform: uppercase;
-        margin-top: 1em;
-        margin-left: -30px;
+        margin-top: 8%;
+        margin-left: -30%;
         z-index: -10;
     }
     
@@ -313,7 +258,9 @@
     
     section.autores-destacados {
         width: 100%;
+        height: 100%;
         padding: 2% 10%;
+        padding-left: 19%;
         background-color: #fff;
     }
     
@@ -348,4 +295,185 @@
         object-fit: cover;
         margin-right: 1rem;
         z-index: 10;
+    }
+    /* SECTION TODOS LOS LIBROS */
+    
+    section.listado-libros {
+        width: 100%;
+        height: 100%;
+        padding: 2% 10%;
+        padding-left: 19%;
+        background-color: #c1d1d6;
+    }
+    
+    section.listado-libros h2 {
+        border-bottom: #626262 solid 1px;
+    }
+    
+    div.grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .cards_listado-libros {
+        display: flex;
+        flex-basis: max-content;
+        width: 100%;
+        height: 350px;
+    }
+    
+    .card--conteiner_listado-libros {
+        display: flex;
+        padding: 10px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .card__item_listado-libros {
+        display: flex;
+        padding: 1rem;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 100%;
+    }
+    
+    .card__img-libro {
+        width: 60%;
+        height: 100%;
+        object-fit: cover;
+        margin-right: 1rem;
+        z-index: 10;
+    }
+    
+    .card__item_listado-libros div h4 {
+        font-size: 100%;
+    }
+    
+    .card__item_listado-libros div p {
+        font-size: 80%;
+        margin-bottom: 0;
+    }
+    
+    .card__item_listado-libros div button {
+        border: none;
+        padding: 5% 15%;
+        padding-left: 40%;
+        text-transform: uppercase;
+        margin-top: 2%;
+        margin-left: -30%;
+        z-index: -10;
+        border-radius: 2rem;
+    }
+    
+    .card__item_listado-libros div button.comprar {
+        background: #7307a3;
+    }
+    
+    .card__item_listado-libros div button.alquilar {
+        background: #4e59d3;
+        padding-left: 42%;
+        margin-top: 5%;
+    }
+    
+    .card__item_listado-libros div button a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .card__item_listado-libros div button:hover {
+        opacity: 0.5;
+    }
+    /* SECTION TODOS LOS AUTORES */
+    
+    section.listado-autores {
+        width: 100%;
+        height: 100%;
+        padding: 2% 10%;
+        padding-left: 19%;
+        background-color: #fff;
+    }
+    
+    section.listado-autores h2 {
+        border-bottom: #626262 solid 1px;
+    }
+    
+    div.grid-autor {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .cards_listado-autores {
+        display: flex;
+        flex-basis: max-content;
+        width: 100%;
+        height: 300px;
+        margin-bottom: -15%;
+    }
+    
+    .card--conteiner_listado-autores {
+        display: flex;
+        padding: 20px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .card__item_listado-autores {
+        display: flex;
+        padding: 1rem;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 80%;
+        width: 80%;
+    }
+    
+    .card__img-autor {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        margin-right: 1rem;
+        z-index: 10;
+        border-radius: 50%;
+    }
+    
+    .card__item_listado-autores div h4 {
+        padding-top: 20%;
+        font-size: 100%;
+    }
+    
+    .card__item_listado-autores div p {
+        font-size: 80%;
+        margin-bottom: 0;
+    }
+    /* LISTADO AUTORES */
+    
+    section#todas-las-editoriales {
+        background-color: #c1b4df;
+    }
+    
+    .card--conteiner_listado-editorial {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .card__item_listado-editorial {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .card__item_listado-editorial h4 {
+        font-size: 20px;
+    }
+    
+    .cards_listado-editorial {
+        display: flex;
+        flex-basis: max-content;
+        width: 100%;
+        height: 35px;
     }

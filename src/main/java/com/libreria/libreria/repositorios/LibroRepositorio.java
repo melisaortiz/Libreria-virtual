@@ -43,16 +43,13 @@ public interface LibroRepositorio extends JpaRepository<Libro, String> {
     public List<Libro> buscarPorNombreAutor(@Param("nombreAutor") Autor autor);
 
     // Método que sólo devuelve los libros dados de alta.
-    /**
-     *
-     * @return
-     */
     @Query("SELECT l FROM Libro l WHERE l.alta IS true ORDER BY l.titulo ASC")
     public List<Libro> findAllAltaIsTrue();
 
     // Método que sólo devuelve los libros dados de baja.
     @Query("SELECT l FROM Libro l WHERE l.alta IS false ORDER BY l.titulo ASC")
     public List<Libro> listarDeBaja();
+
     // Método que sólo devuelve los libros comprados.
     @Query("SELECT l FROM Libro l WHERE l.compra IS true ORDER BY l.titulo ASC")
     public List<Libro> listarDeCompra();
@@ -60,7 +57,7 @@ public interface LibroRepositorio extends JpaRepository<Libro, String> {
     // Método que sólo devuelve los libros agregados al carrito.
     @Query("SELECT SUM(l.precio) FROM Libro l WHERE l.compra IS true")
     public List<Long> sumaCarrito();
-    
+
     // Método que devuelve el libro/s vinculado a una categoria:
     @Query("SELECT l FROM Libro l WHERE l.categoria = :categoria")
     public List<Libro> buscarPorCategoria(@Param("categoria") Categoria categoria);

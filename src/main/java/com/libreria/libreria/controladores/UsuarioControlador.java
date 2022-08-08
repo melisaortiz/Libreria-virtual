@@ -1,41 +1,111 @@
 package com.libreria.libreria.controladores;
 
 import com.libreria.libreria.entidades.Usuario;
-import com.libreria.libreria.errores.ErroresServicio;
 import com.libreria.libreria.servicios.UsuarioServicio;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Acceso para todo tipo de usuario para modificar los datos de su perfil.
+ *
+ *
+ */
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
-   
-    @PostMapping("/registrar_usuario")
-    public String registrarUsuario(MultipartFile archivo, ModelMap modelo, @RequestParam String nombre, @RequestParam String dni, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave, @RequestParam String clave2) throws Exception {
-        try {
-            usuarioServicio.registrar(archivo, nombre, dni, telefono, mail, clave, clave2);
-            modelo.put("exito", "Usuario registrado con éxito.");
-            return "libros.html";
 
-        } catch (ErroresServicio ex) {
-            
-            modelo.put("error", ex.getMessage()); //Con la clase modelMap podemos mostrar los errores de las excepciones en nuestro html
-            modelo.put("nombre", nombre);
-            modelo.put("dni", dni);
-            modelo.put("telefono", telefono);
-            modelo.put("mail", mail);
-            modelo.put("clave", clave);
-            return "login.html";
+    /**
+     * Precarga datos con la información del usuario que lo solicita.
+     *
+     * @param model
+     * @param idUsuarioModif
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
+    @GetMapping("/modificar-usuario-datos/{idUsuarioModif}")
+    public String datosUsuario(ModelMap model, @PathVariable String idUsuarioModif) {
+        Usuario usuario = usuarioServicio.getById(idUsuarioModif);
+        model.addAttribute("usuarioModif", usuario);
+        return "index.html";
+    }
+
+    /**
+     * Devuelve la vista de modificación de datos con la información precargada
+     * del usuario que lo solicita.
+     *
+     * @param session
+     * @param id
+     * @param model
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
+    @GetMapping("/editar-perfil")
+    public String editarPerfil(HttpSession session, @RequestParam String id, ModelMap model) {
+        Usuario login = (Usuario) session.getAttribute("usuariosession");
+        /*Securización para evitar que el perfil pueda ser editado sólo por el
+        usuario logueado, si es que se corresponde su id:*/
+        if (login == null) {
+            return "redirect:/";
         }
+        if (!login.getId().equals(id)) {
+            return "redirect:/index";
+        }
+
+        try {
+            Usuario usuario = usuarioServicio.getById(id);
+            model.addAttribute("usuarioModif", usuario);
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+        }
+        return "editar_perfil.html";
+    }
+
+    /**
+     * Método para actualizar la información del usuario que lo solicite.
+     *
+     * @param model
+     * @param session
+     * @param archivo
+     * @param id
+     * @param nombre
+     * @param apellido
+     * @param dni
+     * @param telefono
+     * @param mail
+     * @param clave
+     * @param clave2
+     * @return
+     */
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
+    @PostMapping("/actualizar-perfil")
+    public String actualizar(ModelMap model, HttpSession session, MultipartFile archivo, @RequestParam String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String telefono, @RequestParam String mail, @RequestParam String clave, @RequestParam String clave2) {
+        Usuario usuario = null;
+        try {
+            Usuario login = (Usuario) session.getAttribute("usuariosession");
+            if (login == null || !login.getId().equals(id)) {
+                return "redirect:/index";
+            }
+            usuario = usuarioServicio.getById(id);
+            usuarioServicio.modificar(id, archivo, nombre, dni, telefono, mail, clave, clave2);
+            session.setAttribute("usuariosession", usuario);
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+            model.put("perfil", usuario);
+            return "index.html";
+        }
+        return "redirect:/index";
     }
 
 }

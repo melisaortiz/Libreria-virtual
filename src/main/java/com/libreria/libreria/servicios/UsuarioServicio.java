@@ -1,7 +1,5 @@
 package com.libreria.libreria.servicios;
 
-
-
 import com.libreria.libreria.entidades.Foto;
 import com.libreria.libreria.entidades.Usuario;
 import com.libreria.libreria.enums.Rol;

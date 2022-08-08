@@ -29,5 +29,9 @@ public interface AutorRepositorio extends JpaRepository<Autor, String> {
     @Override
     public List<Autor> findAll();
     
+    // Método que sólo devuelve los autores dados de alta.
+    @Query("SELECT a FROM Autor a WHERE a.alta IS true ORDER BY a.nombre ASC")
+    public List<Autor> findAllAltaIsTrue();
+    
 }
 

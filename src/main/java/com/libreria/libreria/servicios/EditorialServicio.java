@@ -46,7 +46,7 @@ public class EditorialServicio {
     }
 
     @Transactional
-    public void modificar(String id, String nombre) throws ErroresServicio {
+    public void modificarEditorial(String id, String nombre) throws ErroresServicio {
         validar(nombre);
         Optional<Editorial> respuesta = editorialRepositorio.findById(id);
         if (respuesta.isPresent()) {
@@ -93,6 +93,15 @@ public class EditorialServicio {
      */
     public Editorial buscarPorNombre(String nombre) {
         return editorialRepositorio.buscarPorNombre(nombre);
+    }
+    
+    /**
+     * Sólo devuelve todos los libros dados de alta.
+     *
+     * @return
+     */
+    public List<Editorial> findAllAltaIsTrue() {
+        return editorialRepositorio.findAllAltaIsTrue();
     }
     
     @Transactional(readOnly = true)
