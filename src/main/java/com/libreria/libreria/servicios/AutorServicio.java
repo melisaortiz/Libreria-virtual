@@ -198,6 +198,15 @@ public class AutorServicio {
         }
     }
 
+    /**
+     * Sólo devuelve todos los libros dados de alta.
+     *
+     * @return
+     */
+    public List<Autor> findAllAltaIsTrue() {
+        return autorRepositorio.findAllAltaIsTrue();
+    }
+    
     @Transactional(readOnly = true)
     public List<Autor> listarTodos() {
         List<Autor> autores = autorRepositorio.findAll();

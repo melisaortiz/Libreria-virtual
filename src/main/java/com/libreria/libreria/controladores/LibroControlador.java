@@ -9,8 +9,11 @@ import com.libreria.libreria.servicios.EditorialServicio;
 import com.libreria.libreria.servicios.LibroServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +33,7 @@ public class LibroControlador {
     @Autowired
     private AutorServicio autorServicio;
 
+    //Crear un libro
     @PostMapping("/crear_libro")
     public String crearLibro(ModelMap model, MultipartFile archivo, @RequestParam Long isbn,
             @RequestParam String titulo, @RequestParam Integer anio, @RequestParam String descripcion,
@@ -38,8 +42,7 @@ public class LibroControlador {
         Autor autor;
         Editorial editorial;
 
-//         Autor autorObjeto = autorServicio.buscarPorNombre(autor);
-//        Editorial editorialObjeto = editorialServicio.buscarPorNombre(editorial);
+
         try {
 
 //             Seteo del autor:
@@ -129,5 +132,72 @@ public class LibroControlador {
 //            model.put("error", "Error al intentar modificar el autor: " + e.getMessage());
             return "administrador.html";
         }
+    }
+
+    /**
+     * Función que carga la vista para modificar los datos de un arte elegido
+     * previamente. Busca el arte en el repositorio por id, y lo inyecta al
+     * modelo para tener todos sus datos. También se inyecta la lista de Autores
+     * y Editoriales.
+     *
+     * @param model
+     * @param idLibroElegido
+     * @return
+     */
+//    
+//    @GetMapping("/modificar-libro-elegido/{idLibroModif}")
+//    public String modificarLibroElegido(ModelMap model,
+//            @PathVariable String idLibroElegido) {
+//        
+//        Libro libro = libroServicio.getById(idLibroElegido);
+//        model.addAttribute("libroModif", libro);
+//        List<Autor> autores = autorServicio.findAll();
+//        model.addAttribute("autores", autores);
+//         List<Editorial> editoriales = editorialServicio.findAll();
+//        model.addAttribute("editoriales", editoriales);
+//        model.addAttribute("categorias", Categoria.values());
+//        return "administrador.html";
+//    }
+    /**
+     * Función para dar de baja un libro. Una vez modificado el atributo "alta"
+     * desde el servicio, muestra la página de "administrador.html" con mensajes
+     * inyectados al modelo. Es una url con "path variable" (id del arte a dar
+     * de baja).
+     *
+     * ESTE MÉTODO USA EL MODEL PARA QUE APAREZCA LA ALERTA ("success" O
+     * "error") EN LA MISMA PLANTILA DE "admin-arte.html".
+     *
+     * @param model
+     * @param id
+     * @return
+     */
+    @GetMapping("/baja/{id}")
+    public String darBaja(ModelMap model, @PathVariable String id) {
+        try {
+            libroServicio.deshabilitarLibro(id);
+            // Mensaje de éxito inyectado al modelo:
+            model.put("exito", "El libro '" + libroServicio.getById(id).getTitulo() + "' fue dado de baja exitosamente.");
+        } catch (Exception e) {
+            // Mensaje de error inyectado al modelo:
+            model.put("error", "Error al intentar dar de baja el arte: " + e.getMessage());
+        }
+        // Datos inyectados al modelo de "administrador.html":
+            
+        return "redirect:/admin";
+    }   
+
+    //Dar de alta un libro
+    @GetMapping("/alta/{id}")
+    public String alta(ModelMap model, @PathVariable String id) {
+        try {
+            libroServicio.habilitarLibro(id);
+            // Mensaje de éxito inyectado al modelo:
+            model.put("exito", "El libro '" + libroServicio.getById(id).getTitulo() + "' fue dado de alta exitosamente.");
+        } catch (Exception e) {
+            // Mensaje de error inyectado al modelo:
+            model.put("error", "Error al intentar dar de baja el arte: " + e.getMessage());
+        }
+
+        return "redirect:/admin";
     }
 }

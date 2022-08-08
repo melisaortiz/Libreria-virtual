@@ -4,6 +4,7 @@ package com.libreria.libreria.servicios;
 import com.libreria.libreria.entidades.Foto;
 import com.libreria.libreria.repositorios.FotoRepositorio;
 import java.io.IOException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,6 +71,16 @@ public class FotoServicio {
             }
         }
         return null;
+    }
+    
+    
+    /**
+     * Lista todos las fotos de los libros
+     *
+     * @return
+     */
+    public List<Foto> findAll() {
+        return fotoRepositorio.findAll();
     }
     
 }

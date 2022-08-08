@@ -17,4 +17,8 @@ public interface EditorialRepositorio extends JpaRepository<Editorial, String> {
     @Query("SELECT e FROM Editorial e WHERE e.nombre = :nombre")
     public Editorial buscarPorNombre(@Param("nombre") String nombre);
     
+     // Método que sólo devuelve los autores dados de alta.
+    @Query("SELECT e FROM Editorial e WHERE e.alta IS true ORDER BY e.nombre ASC")
+    public List<Editorial> findAllAltaIsTrue();
+    
 }

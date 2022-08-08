@@ -258,7 +258,7 @@ public class LibroServicio {
             Libro libro = libroRepositorio.getById(id);
             if (libro != null) { // El libro con ese id SI existe en la DB
                 // Se da de alta el libro:
-                libro.setCompra(true);
+                libro.setAlta(true);
                 libroRepositorio.save(libro);
             } else { // El libro con ese id NO existe en la DB
                 throw new Exception("No existe libro con el id indicado.");
@@ -398,9 +398,9 @@ public class LibroServicio {
      *
      * @return
      */
-//    public List<Libro> listarDeBaja() {
-//        return libroRepositorio.listarDeBaja();
-//    }
+    public List<Libro> listarDeBaja() {
+        return libroRepositorio.listarDeBaja();
+    }
     /**
      * Devuelve los libro comprados.
      *

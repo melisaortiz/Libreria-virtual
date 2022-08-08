@@ -95,6 +95,15 @@ public class EditorialServicio {
         return editorialRepositorio.buscarPorNombre(nombre);
     }
     
+    /**
+     * Sólo devuelve todos los libros dados de alta.
+     *
+     * @return
+     */
+    public List<Editorial> findAllAltaIsTrue() {
+        return editorialRepositorio.findAllAltaIsTrue();
+    }
+    
     @Transactional(readOnly = true)
     public List<Editorial> buscarTodosPorNombre() {
 

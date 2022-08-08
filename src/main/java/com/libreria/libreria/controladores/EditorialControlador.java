@@ -5,13 +5,17 @@ import com.libreria.libreria.errores.ErroresServicio;
 import com.libreria.libreria.servicios.EditorialServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+//@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/editorial")
 public class EditorialControlador {
 
@@ -71,5 +75,36 @@ public class EditorialControlador {
 //            model.put("error", "Error al intentar modificar la editorial: " + e.getMessage());
             return "administrador.html";
         }
+    }
+    
+    //Dar de baja una editorial
+    @GetMapping("/baja/{id}")
+    public String darBaja(ModelMap model, @PathVariable String id) {
+        try {
+            editorialServicio.deshabilitar(id);
+            // Mensaje de éxito inyectado al modelo:
+            model.put("exito", "La editorial '" + editorialServicio.getById(id).getNombre()+ "' fue dada de baja exitosamente.");
+        } catch (Exception e) {
+            // Mensaje de error inyectado al modelo:
+            model.put("error", "Error al intentar dar de baja la editorial: " + e.getMessage());
+        }
+        // Datos inyectados al modelo de "administrador.html":
+            
+        return "redirect:/admin";
+    }   
+
+    //Dar de alta una editorial
+    @GetMapping("/alta/{id}")
+    public String alta(ModelMap model, @PathVariable String id) {
+        try {
+            editorialServicio.habilitar(id);
+            // Mensaje de éxito inyectado al modelo:
+            model.put("exito", "La editorial '" + editorialServicio.getById(id).getNombre()+ "' fue dada de alta exitosamente.");
+        } catch (Exception e) {
+            // Mensaje de error inyectado al modelo:
+            model.put("error", "Error al intentar dar de baja la editorial: " + e.getMessage());
+        }
+
+        return "redirect:/admin";
     }
 }
