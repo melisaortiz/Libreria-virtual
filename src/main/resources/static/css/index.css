@@ -49,16 +49,6 @@ body main .encabezado {
     margin-top: 5rem;
 }
 
-.encabezado div button#admin {
-    position: relative;
-    top: -128px;
-}
-
-.encabezado div button#usuario {
-    position: relative;
-    top: -128px;
-}
-
 .encabezado div button a {
     text-decoration: none;
     color: white;

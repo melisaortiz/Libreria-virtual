@@ -38,7 +38,7 @@
             <div class="titulo">
                 <h1 class="fuente"> Libroteca vitual</h1>
                 <p>Librería y biblioteca en un mismo lugar.</p>
-                <button><a href="/libros">Ver libros</a></button>
+                <button sec:authorize="!isAuthenticated()"><a href="/libros">Ver libros</a></button>
                 <button sec:authorize="hasAnyRole('ADMIN')" id="admin"><a href="/admin">Ver libros</a></button>
                 <button sec:authorize="hasAnyRole('USUARIO')" id="usuario"><a href="/usuario">Ver libros</a></button>
             </div>
@@ -60,7 +60,7 @@
                     <div class="swiper-wrapper">
 
                         <div class="swiper-slide">
-                            <img src="/img/img_main.png" alt="">
+                            <img src="/img/literatura-infantil-feria-libro.png" alt="">
                             <div class="card-description">
                                 <div class="card-title">
                                     <h4>Descrpcion</h4>
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <img src="" alt="">
+                            <img src="/img/leer-aire-libre.jpg" alt="">
                             <div class="card-description">
                                 <div class="card-title">
                                     <h4>Descrpcion</h4>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <img src="" alt="">
+                            <img src="/img/interior-feria-del-libro.jpg" alt="">
                             <div class="card-description">
                                 <div class="card-title">
                                     <h4>Descrpcion</h4>

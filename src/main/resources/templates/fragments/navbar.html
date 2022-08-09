@@ -21,11 +21,13 @@
             <li id="navbar_nombre">
                 <a href="/index">Libroteca virtual</a>
             </li>
-            <li><button><a href="/login" id="login">Iniciar sesión</a></button></li>
-            <li><a href="/index#quienes-somos">Quiénes somos</a></li>
-            <li><a href="/index#contacto">Contacto</a></li>
+            <li><button sec:authorize="!isAuthenticated()"><a href="/login" id="login">Iniciar sesión</a></button></li>
+            <li><a href="/index#quienes-somos" sec:authorize="!isAuthenticated()">Quiénes somos</a></li>
+            <li><a href="/index#contacto" sec:authorize="!isAuthenticated()">Contacto</a></li>
             <!-- --------------------- SESIÓN INICIADA ------------- -->
+            <li><button type="submit" style="background: none;"><i sec:authorize="hasAnyRole('USUARIO')" class="bi bi-cart-fill" style="color:#fffe ;"></i></button></li>
             <p sec:authorize="hasAnyRole('ADMIN','USUARIO')" class="nombre-usuario"><span id="userName" sec:authentication="name">Testuser</span></p>
+
 
             <div sec:authorize="hasAnyRole('ADMIN','USUARIO')" class="navbar-nav">
                 <li class="nav-item dropdown">
